@@ -2,12 +2,14 @@ export { fetchHackerNews } from './hackernews.js';
 export { fetchReddit } from './reddit.js';
 export { fetchArxiv } from './arxiv.js';
 export { fetchYouTube } from './youtube.js';
+export { fetchRSSFeeds, addCustomFeed, listFeeds } from './rss.js';
 
 import { FetchResult } from '../../types/index.js';
 import { fetchHackerNews } from './hackernews.js';
 import { fetchReddit } from './reddit.js';
 import { fetchArxiv } from './arxiv.js';
 import { fetchYouTube } from './youtube.js';
+import { fetchRSSFeeds } from './rss.js';
 import { logger } from '../logger.js';
 
 export async function fetchAllSources(): Promise<FetchResult[]> {
@@ -18,7 +20,8 @@ export async function fetchAllSources(): Promise<FetchResult[]> {
     fetchHackerNews(),
     fetchReddit(),
     fetchArxiv(),
-    fetchYouTube()
+    fetchYouTube(),
+    fetchRSSFeeds()  // RSS feeds from OpenAI, Anthropic, TechCrunch, etc.
   ]);
   
   const fetchResults: FetchResult[] = [];

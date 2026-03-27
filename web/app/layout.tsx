@@ -28,6 +28,9 @@ export default function RootLayout({
                 <a href="/stats" className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
                   Stats
                 </a>
+                <a href="/settings" className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
+                  ⚙️ Settings
+                </a>
               </nav>
             </div>
           </div>

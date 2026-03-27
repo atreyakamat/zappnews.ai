@@ -1,5 +1,5 @@
 // Source types
-export type SourceType = 'hackernews' | 'reddit' | 'arxiv' | 'youtube' | 'twitter' | 'threads';
+export type SourceType = 'hackernews' | 'reddit' | 'arxiv' | 'youtube' | 'twitter' | 'threads' | 'rss';
 
 export type TagType = 'tool' | 'paper' | 'project' | 'tutorial' | 'opinion';
 
@@ -98,6 +98,7 @@ export interface FetchResult {
   source: SourceType;
   items: ItemInsert[];
   error?: string;
+  errors?: string[];  // For sources that fetch multiple sub-sources (like RSS)
 }
 
 // LLM summary result
