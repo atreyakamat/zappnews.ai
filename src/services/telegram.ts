@@ -16,11 +16,12 @@ const TAG_EMOJI: Record<TagType, string> = {
   opinion: '💬'
 };
 
-// Format a single digest item
+// Format a single digest item (clean, readable format)
 function formatDigestItem(item: DigestItem, index: number): string {
   const emoji = TAG_EMOJI[item.tag] || '📰';
   
-  return `*${index + 1}. ${escapeMarkdown(item.title)}*
+  // Using simpler formatting that works better
+  return `*${index + 1}\\. ${escapeMarkdown(item.title)}*
 ${emoji} ${item.tag.toUpperCase()}
 
 ${escapeMarkdown(item.summary)}
@@ -34,35 +35,40 @@ function escapeMarkdown(text: string): string {
   return text.replace(/([_*\[\]()~`>#+\-=|{}.!])/g, '\\$1');
 }
 
-// Send daily digest
-export async function sendDailyDigest(): Promise<void> {
+// Send hourly digest with new items
+export async function sendHourlyDigest(): Promise<void> {
   try {
-    logger.info('Sending daily digest...');
+    const minItems = parseInt(config.MIN_ITEMS_FOR_DIGEST, 10) || 3;
     
-    const items = await db.getDailyDigest(5);
+    logger.info('Checking for unsent summaries...');
+    const items = await db.getUnsentSummaries(5);
     
-    if (items.length === 0) {
-      await bot.sendMessage(chatId, '🤖 *AI News*\n\nNo new items today. Check back tomorrow!', {
-        parse_mode: 'MarkdownV2'
-      });
+    if (items.length < minItems) {
+      logger.info(`Only ${items.length} items available, need ${minItems}. Skipping digest.`);
       return;
     }
     
-    const date = new Date().toLocaleDateString('en-US', { 
-      weekday: 'long', 
-      month: 'long', 
-      day: 'numeric' 
-    });
-    
-    const header = `🤖 *AI News — ${escapeMarkdown(date)}*\n\n`;
+    const now = new Date();
+    const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
     
     // Send header
-    await bot.sendMessage(chatId, header, { parse_mode: 'MarkdownV2' });
+    await bot.sendMessage(chatId, `🤖 *AI News Update* \\- ${escapeMarkdown(timeStr)}\n\n${items.length} fresh items for you:`, { 
+      parse_mode: 'MarkdownV2' 
+    });
+    
+    // Track summary IDs to mark as sent
+    const summaryIds: string[] = [];
     
     // Send each item with inline buttons
     for (let i = 0; i < items.length; i++) {
       const item = items[i];
       const message = formatDigestItem(item, i);
+      
+      // Get summary ID from item
+      const summary = await db.getSummaryByItemId(item.item_id);
+      if (summary) {
+        summaryIds.push(summary.id);
+      }
       
       await bot.sendMessage(chatId, message, {
         parse_mode: 'MarkdownV2',
@@ -74,36 +80,42 @@ export async function sendDailyDigest(): Promise<void> {
         }
       });
       
-      // Small delay between messages
       await new Promise(resolve => setTimeout(resolve, 500));
     }
     
-    logger.info(`Sent daily digest with ${items.length} items`);
+    // Mark summaries as sent
+    if (summaryIds.length > 0) {
+      await db.markSummariesSent(summaryIds);
+    }
+    
+    logger.info(`✅ Sent hourly digest with ${items.length} items`);
   } catch (error) {
-    logger.error('Error sending daily digest:', error);
+    logger.error('Error sending hourly digest:', error);
     throw error;
   }
 }
 
-// Send weekend digest (saved items)
+// Alias for backwards compatibility
+export const sendDailyDigest = sendHourlyDigest;
+
+// Send saved items digest
 export async function sendWeekendDigest(): Promise<void> {
   try {
-    logger.info('Sending weekend digest...');
+    logger.info('Sending saved items digest...');
     
     const items = await db.getWeekendDigest();
     
     if (items.length === 0) {
-      await bot.sendMessage(chatId, '📦 *Weekend Digest*\n\nYou have no saved items to try this weekend\\. Save some items during the week!', {
+      await bot.sendMessage(chatId, '📦 *Saved Items*\n\nNo saved items yet\\. Save items from your digests\\!', {
         parse_mode: 'MarkdownV2'
       });
       return;
     }
     
-    const header = `📦 *Your saved items for this weekend* \\(${items.length} items\\)\n\nTime to experiment\\! Here are your bookmarked AI tools and projects:\n`;
+    await bot.sendMessage(chatId, `📦 *Your Saved Items* \\(${items.length}\\)\n\nTime to experiment with these:`, { 
+      parse_mode: 'MarkdownV2' 
+    });
     
-    await bot.sendMessage(chatId, header, { parse_mode: 'MarkdownV2' });
-    
-    // Send each saved item with action buttons
     for (let i = 0; i < items.length; i++) {
       const item = items[i];
       const emoji = TAG_EMOJI[item.tag as TagType] || '📰';
@@ -120,7 +132,7 @@ ${escapeMarkdown(item.summary)}
         parse_mode: 'MarkdownV2',
         reply_markup: {
           inline_keyboard: [[
-            { text: '✅ Mark as Tried', callback_data: `tried:${item.saved_id}` },
+            { text: '✅ Tried', callback_data: `tried:${item.saved_id}` },
             { text: '🎉 Done', callback_data: `done:${item.saved_id}` }
           ]]
         }
@@ -129,14 +141,14 @@ ${escapeMarkdown(item.summary)}
       await new Promise(resolve => setTimeout(resolve, 500));
     }
     
-    logger.info(`Sent weekend digest with ${items.length} items`);
+    logger.info(`Sent saved items digest with ${items.length} items`);
   } catch (error) {
-    logger.error('Error sending weekend digest:', error);
+    logger.error('Error sending saved items digest:', error);
     throw error;
   }
 }
 
-// Handle callback queries (button presses)
+// Handle button callbacks
 bot.on('callback_query', async (query) => {
   try {
     const data = query.data;
@@ -146,11 +158,10 @@ bot.on('callback_query', async (query) => {
     
     switch (action) {
       case 'save': {
-        // Get the summary for this item
         const summary = await db.getSummaryByItemId(id);
         if (summary) {
           await db.saveItem(summary.id);
-          await bot.answerCallbackQuery(query.id, { text: '✅ Saved!' });
+          await bot.answerCallbackQuery(query.id, { text: '✅ Saved to library!' });
         } else {
           await bot.answerCallbackQuery(query.id, { text: '❌ Item not found' });
         }
@@ -168,50 +179,57 @@ bot.on('callback_query', async (query) => {
       
       case 'done':
         await db.updateSavedStatus(id, 'done');
-        await bot.answerCallbackQuery(query.id, { text: '🎉 Marked as done!' });
+        await bot.answerCallbackQuery(query.id, { text: '🎉 Done! Great job!' });
         break;
       
       default:
         await bot.answerCallbackQuery(query.id, { text: 'Unknown action' });
     }
   } catch (error) {
-    logger.error('Error handling callback query:', error);
+    logger.error('Callback error:', error);
     await bot.answerCallbackQuery(query.id, { text: '❌ Error' });
   }
 });
 
-// Handle /start command
+// /start command
 bot.onText(/\/start/, async (msg) => {
+  const stats = await db.getStats();
+  
   const welcomeMessage = `🤖 *Welcome to ZappNews AI\\!*
 
-I'll send you daily AI news digests with the latest:
-• 🔧 Tools and releases
+I send you AI news digests every hour with:
+• 🔧 Tools \\& releases
 • 📄 Research papers
-• 🚀 Project launches
+• 🚀 Projects
 • 📚 Tutorials
-• 💬 Industry insights
+
+*Stats:*
+📊 ${stats.items} items fetched
+📝 ${stats.summaries} summaries
+💾 ${stats.saved} saved
 
 *Commands:*
-/digest \\- Get today's top AI news
+/digest \\- Get latest AI news now
 /saved \\- View your saved items
-/status \\- Check bot status
+/stats \\- See statistics
+/fetch \\- Trigger manual fetch
 
 Happy learning\\! 🎯`;
 
   await bot.sendMessage(msg.chat.id, welcomeMessage, { parse_mode: 'MarkdownV2' });
 });
 
-// Handle /digest command
+// /digest command
 bot.onText(/\/digest/, async () => {
-  await sendDailyDigest();
+  await sendHourlyDigest();
 });
 
-// Handle /saved command
+// /saved command
 bot.onText(/\/saved/, async (msg) => {
   const items = await db.getSavedItems();
   
   if (items.length === 0) {
-    await bot.sendMessage(msg.chat.id, '📭 No saved items yet\\. Save items from your daily digest\\!', {
+    await bot.sendMessage(msg.chat.id, '📭 No saved items yet\\. Tap Save on items from your digests\\!', {
       parse_mode: 'MarkdownV2'
     });
     return;
@@ -237,15 +255,21 @@ bot.onText(/\/saved/, async (msg) => {
   await bot.sendMessage(msg.chat.id, message, { parse_mode: 'MarkdownV2' });
 });
 
-// Handle /status command
-bot.onText(/\/status/, async (msg) => {
-  const message = `✅ *ZappNews AI Status*
+// /stats command
+bot.onText(/\/stats/, async (msg) => {
+  const stats = await db.getStats();
+  
+  const message = `📊 *ZappNews Statistics*
 
-🤖 Bot: Online
-📡 Polling: Active
-⏰ Daily digest: ${escapeMarkdown(config.DAILY_DIGEST_CRON)}
-📦 Weekend digest: ${escapeMarkdown(config.WEEKEND_DIGEST_CRON)}
-🔄 Fetch schedule: ${escapeMarkdown(config.FETCH_CRON)}`;
+📥 Items fetched: ${stats.items}
+📝 Summaries: ${stats.summaries}
+📬 Unsent: ${stats.unsent}
+💾 Saved: ${stats.saved}
+
+⏰ Fetch: ${escapeMarkdown(config.FETCH_CRON)}
+📨 Digest: ${escapeMarkdown(config.DIGEST_CRON)}
+🔧 LLM: ${escapeMarkdown(config.LLM_PROVIDER)}
+💾 DB: ${escapeMarkdown(config.DB_MODE)}`;
 
   await bot.sendMessage(msg.chat.id, message, { parse_mode: 'MarkdownV2' });
 });

@@ -4,15 +4,27 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const envSchema = z.object({
-  // Supabase
-  SUPABASE_URL: z.string().url(),
-  SUPABASE_ANON_KEY: z.string().min(1),
-  SUPABASE_SERVICE_KEY: z.string().min(1).optional(),
+  // Database mode: 'local' (SQLite) or 'supabase'
+  DB_MODE: z.enum(['local', 'supabase']).default('local'),
+  
+  // Local SQLite path
+  SQLITE_PATH: z.string().default('./data/zappnews.db'),
 
-  // OpenAI
-  OPENAI_API_KEY: z.string().min(1),
+  // Supabase (optional, only if DB_MODE=supabase)
+  SUPABASE_URL: z.string().optional(),
+  SUPABASE_ANON_KEY: z.string().optional(),
 
-  // Telegram
+  // LLM Provider: 'openai' or 'openrouter'
+  LLM_PROVIDER: z.enum(['openai', 'openrouter']).default('openrouter'),
+  
+  // OpenAI (optional)
+  OPENAI_API_KEY: z.string().optional(),
+  
+  // OpenRouter (default - 50 free requests!)
+  OPENROUTER_API_KEY: z.string().optional(),
+  OPENROUTER_MODEL: z.string().default('meta-llama/llama-3.2-3b-instruct:free'),
+
+  // Telegram (Required)
   TELEGRAM_BOT_TOKEN: z.string().min(1),
   TELEGRAM_CHAT_ID: z.string().min(1),
 
@@ -28,10 +40,10 @@ const envSchema = z.object({
   PORT: z.string().default('3000'),
   NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
 
-  // Scheduling
-  FETCH_CRON: z.string().default('0 */6 * * *'),
-  DAILY_DIGEST_CRON: z.string().default('0 8 * * *'),
-  WEEKEND_DIGEST_CRON: z.string().default('0 9 * * 6'),
+  // Scheduling - now with hourly digest!
+  FETCH_CRON: z.string().default('0 * * * *'),           // Every hour
+  DIGEST_CRON: z.string().default('5 * * * *'),          // 5 minutes past each hour
+  MIN_ITEMS_FOR_DIGEST: z.string().default('3'),         // Minimum items to send digest
 });
 
 const parseEnv = () => {
