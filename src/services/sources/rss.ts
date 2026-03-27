@@ -11,6 +11,9 @@ const parser = new Parser({
 
 // Popular AI/Tech RSS feeds - add more as needed!
 const RSS_FEEDS: { url: string; name: string; category: string }[] = [
+  // AI Jobs & News
+  { url: 'https://genai.works/rss.xml', name: 'GenAI Works', category: 'jobs' },
+  
   // AI Company Blogs
   { url: 'https://openai.com/blog/rss/', name: 'OpenAI Blog', category: 'ai_company' },
   { url: 'https://www.anthropic.com/rss.xml', name: 'Anthropic', category: 'ai_company' },
@@ -30,6 +33,12 @@ const RSS_FEEDS: { url: string; name: string; category: string }[] = [
   // Developer & Tools
   { url: 'https://huggingface.co/blog/feed.xml', name: 'Hugging Face', category: 'developer' },
   { url: 'https://www.langchain.com/blog/rss.xml', name: 'LangChain', category: 'developer' },
+  
+  // GitHub Trending & Releases
+  { url: 'https://github.com/trending/python.atom', name: 'GitHub Trending Python', category: 'github' },
+  { url: 'https://github.com/trending/javascript.atom', name: 'GitHub Trending JavaScript', category: 'github' },
+  { url: 'https://github.com/trending/typescript.atom', name: 'GitHub Trending TypeScript', category: 'github' },
+  { url: 'https://github.com/trending.atom', name: 'GitHub Trending All', category: 'github' },
   
   // Newsletters (if they have RSS)
   { url: 'https://bensbites.beehiiv.com/feed', name: "Ben's Bites", category: 'newsletter' },
