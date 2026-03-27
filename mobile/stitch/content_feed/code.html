@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "inverse-surface": "#f9f9f9",
+              "surface-dim": "#0e0e0e",
+              "primary-fixed": "#c185ff",
+              "tertiary-fixed": "#ff909e",
+              "on-secondary": "#003549",
+              "tertiary-fixed-dim": "#fa7c8d",
+              "on-secondary-fixed-variant": "#005776",
+              "outline": "#757575",
+              "background": "#0e0e0e",
+              "secondary-fixed": "#9adaff",
+              "on-error": "#490013",
+              "on-secondary-container": "#f1f9ff",
+              "on-error-container": "#ffb2b9",
+              "error-dim": "#d73357",
+              "primary-dim": "#9c42f4",
+              "tertiary": "#ff8b9a",
+              "surface-bright": "#2c2c2c",
+              "on-primary-container": "#350062",
+              "on-surface": "#ffffff",
+              "on-tertiary-fixed-variant": "#711229",
+              "error-container": "#a70138",
+              "on-secondary-fixed": "#00394f",
+              "inverse-primary": "#8523dd",
+              "on-surface-variant": "#ababab",
+              "tertiary-container": "#f7798b",
+              "error": "#ff6e84",
+              "inverse-on-surface": "#555555",
+              "on-primary-fixed-variant": "#420078",
+              "on-primary": "#46007d",
+              "surface-container-lowest": "#000000",
+              "surface-variant": "#262626",
+              "secondary": "#00bdfd",
+              "surface-container-low": "#131313",
+              "primary-container": "#c185ff",
+              "surface-tint": "#ca98ff",
+              "primary-fixed-dim": "#b772ff",
+              "on-tertiary-container": "#4d0015",
+              "on-background": "#ffffff",
+              "surface-container-highest": "#262626",
+              "on-primary-fixed": "#000000",
+              "secondary-container": "#00668a",
+              "primary": "#ca98ff",
+              "surface-container": "#191919",
+              "surface": "#0e0e0e",
+              "outline-variant": "#484848",
+              "on-tertiary-fixed": "#39000e",
+              "secondary-fixed-dim": "#71ceff",
+              "surface-container-high": "#1f1f1f",
+              "secondary-dim": "#00afea",
+              "on-tertiary": "#62041f",
+              "tertiary-dim": "#f47788"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-stroke {
+            background: linear-gradient(135deg, rgba(202, 152, 255, 0.15) 0%, rgba(0, 189, 253, 0.1) 100%);
+            padding: 1px;
+        }
+        .tonal-transition {
+            background: linear-gradient(to bottom, transparent, #131313);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body selection:bg-primary/30 antialiased">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-zinc-950/40 backdrop-blur-xl shadow-[0_8px_32px_0_rgba(138,43,226,0.08)]">
+<div class="flex justify-between items-center px-6 h-16 w-full max-w-7xl mx-auto">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest overflow-hidden ring-1 ring-white/10">
+<img alt="User profile avatar" class="w-full h-full object-cover" data-alt="portrait of a confident man with subtle lighting in a professional studio setting with dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSbphJCsnav-fPK3sXEgSkeT2vd2I14uYGgP7eWerZ0Zf4GW5ZrPWmexlvqFFIfFQQQvqkSMhklediomFIiYR6V2cbOCBeUkk9V9yPzF5-cOyBuwoWOlsVislV2VTwgy8gyQgQsfxemGZ0HZoK0VH8unlanWjMLXFMwKU0_skwMXB_m0fvr-4iHSzD1BtqPhpZrABn12E6BySiHMJncCeZy416vevYwg7kjBEPQu0urwB2h_fTh7zMwjHIEcJKd3_cplKDfVy6rm5v"/>
+</div>
+</div>
+<h1 class="text-xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400 font-headline uppercase">
+                ETHEREAL
+            </h1>
+<div class="flex items-center">
+<button class="text-purple-400 dark:text-purple-300 hover:opacity-80 transition-opacity active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="bubble_chart">bubble_chart</span>
+</button>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-32 px-6 max-w-7xl mx-auto">
+<!-- Hero Section -->
+<section class="mb-12">
+<div class="relative group cursor-pointer overflow-hidden rounded-3xl aspect-[16/9] md:aspect-[21/9]">
+<img alt="Main article feature" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="dramatic wide shot of a futuristic sleek electric vehicle driving through a dark neon-lit cyberpunk city tunnel" src="https://lh3.googleusercontent.com/aida-public/AB6AXuByuuiNfNqFZRH0Qkm13SZ3p9d2kJdvDZYLSPSp8vylkAOEOWdXMD4x0UsxJcqehb2GjNiGneXAm-zhjbQdRtyw95dcIZ82Q8U7CsICw5Izkb5ZnuyGxhh20meImbIYmcUk51PGwFs2XflRcPFQs7PZKeLvaY8a7Wt95EaFQVeVHo02UzT0I0A6WHyfttcCFsXQmlOEzOCDfmBYHSC1Xe0ErLK5h46ge-6kFjzjYaDsiirwPNiLglDv9Tb_JBDbx5y8jqVYi1TXWC0S"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8 md:p-12 w-full max-w-3xl">
+<div class="flex items-center gap-3 mb-4">
+<span class="px-3 py-1 rounded-full bg-primary/20 backdrop-blur-md text-primary font-bold text-[10px] uppercase tracking-widest border border-primary/30">Intelligence</span>
+<span class="text-on-surface-variant text-xs">8 MIN READ</span>
+</div>
+<h2 class="text-4xl md:text-6xl font-headline font-extrabold leading-[1.1] tracking-tight text-white mb-6">
+                        The Ghost in the Machine: Neural Evolution.
+                    </h2>
+<p class="text-on-surface-variant text-lg max-w-xl mb-8 line-clamp-2">
+                        How the next generation of generative architecture is bridging the gap between raw data and human intuition.
+                    </p>
+<div class="flex items-center gap-4">
+<button class="bg-gradient-to-r from-primary to-secondary text-on-primary-fixed px-8 py-3 rounded-full font-bold text-sm tracking-wide active:scale-95 transition-transform">
+                            READ ARTICLE
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Feed Grid -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Side Column Articles -->
+<div class="md:col-span-4 space-y-6">
+<!-- Mini Card 1 -->
+<article class="bg-surface-container-low rounded-3xl p-6 border border-white/5 hover:bg-surface-container-high transition-colors group">
+<div class="text-cyan-400 font-headline font-bold text-xs uppercase tracking-widest mb-3">Market Pulse</div>
+<h3 class="text-xl font-headline font-bold text-white mb-4 leading-snug group-hover:text-primary transition-colors">Digital Sovereignty in the Age of Silicon.</h3>
+<div class="flex items-center justify-between mt-auto pt-4 border-t border-white/5">
+<span class="text-on-surface-variant text-xs font-medium">By Elena Thorne</span>
+<span class="material-symbols-outlined text-on-surface-variant text-sm" data-icon="north_east">north_east</span>
+</div>
+</article>
+<!-- Mini Card 2 (Image Focus) -->
+<article class="relative rounded-3xl overflow-hidden aspect-square group">
+<img alt="Abstract tech" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="abstract 3d render of flowing iridescent crystalline structures reflecting deep purple and cyan lights on a black background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDURJg_f1HTLV9OL_aL2eJ5qQcb_esn5Kv0GJD0XnHTWe-scanY8dL5ERCoIVWy8in5uIqZQmt_rCRG2Ti_lVeq1PeaYlBt_y_J88NraefcTBZM36pCZZLpUVzPQChjVpLFR1LJU6xB3-_C30CH5Sw9mH-kQfB9PsoxSN-xxGV8wp0nfpCe27klwCN3a6sOCadqtq2T_vqjNAxoovtK3mXXJIWbC-PVMMkAvhXdw0zgz2wMDIJ76Z6-tm-eHkFX3TltwWbYM0qn0NP1"/>
+<div class="absolute inset-0 bg-black/40 backdrop-blur-[2px]"></div>
+<div class="absolute inset-0 p-6 flex flex-col justify-end">
+<h3 class="text-2xl font-headline font-bold text-white mb-2">Web4: The Invisible Protocol.</h3>
+<p class="text-white/70 text-sm line-clamp-2">Decrypting the next phase of decentralized systems.</p>
+</div>
+</article>
+</div>
+<!-- Main Column Feed -->
+<div class="md:col-span-8 space-y-8">
+<!-- Large Editorial Article -->
+<article class="relative flex flex-col md:flex-row gap-8 items-center bg-surface-container-low/50 rounded-[2rem] p-4 md:p-8 hover:shadow-[0_0_40px_-10px_rgba(138,43,226,0.15)] transition-shadow">
+<div class="w-full md:w-1/2 aspect-video md:aspect-square overflow-hidden rounded-2xl ring-1 ring-white/10">
+<img alt="Security interface" class="w-full h-full object-cover" data-alt="ultra close-up of a high-tech computer chip with glowing micro-circuitry and blue electrical pulses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYRmzANFbIWk1-1f0yTyZYXpdwDLE4yLYswmrBvlq3EGIND8-JrK3JJA4KKmtU1pWYyQ4iC4iVb8vBNgjp50IBYtfNmpJraLVnWEOmfvHV9MOFEKtZxFkktMsJSQ89C2BFVH5MXAp0BqvMfU84pHpW8b2BHLyXgVl4SeYX8qCWTjkruyufkG2fkvIEytGUlktrw8b9HRm714pVwMIt_G4Ltu15zosO390TqmEnmYXhY20Z11NtxjtuxZfVq1zU6FhUnR0nMqHyN7eu"/>
+</div>
+<div class="w-full md:w-1/2 flex flex-col justify-center py-4">
+<div class="text-purple-400 font-headline font-extrabold text-[10px] uppercase tracking-[0.2em] mb-4">CYBERNETICS</div>
+<h2 class="text-3xl md:text-4xl font-headline font-bold text-white mb-4 leading-tight">Beyond the Silicon Ceiling.</h2>
+<p class="text-on-surface-variant mb-6 leading-relaxed">
+                            How bio-synthetic interfaces are redefining the boundaries between human cognition and computational power.
+                        </p>
+<div class="flex items-center gap-4">
+<div class="h-[1px] flex-grow bg-white/10"></div>
+<span class="text-xs text-on-surface-variant uppercase tracking-widest">Read More</span>
+<span class="material-symbols-outlined text-primary text-lg" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+</article>
+<!-- Glass Grid Secondary -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+<div class="bg-surface-container-highest/30 backdrop-blur-md rounded-3xl p-6 border border-white/5">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-secondary text-sm" data-icon="bolt" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<span class="text-xs text-on-surface-variant font-bold uppercase tracking-wider">Fast Track</span>
+</div>
+<h4 class="text-lg font-headline font-bold text-white mb-2 leading-snug">Quantum Supremacy: The 2024 Roadmap.</h4>
+<div class="text-on-surface-variant text-sm">3 min summary of the latest lab breakthroughs.</div>
+</div>
+<div class="bg-surface-container-highest/30 backdrop-blur-md rounded-3xl p-6 border border-white/5">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="auto_awesome" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="text-xs text-on-surface-variant font-bold uppercase tracking-wider">Editor's Pick</span>
+</div>
+<h4 class="text-lg font-headline font-bold text-white mb-2 leading-snug">The Ethics of Immortal Algorithms.</h4>
+<div class="text-on-surface-variant text-sm">A deep dive into the philosophy of persistent AI.</div>
+</div>
+</div>
+</div>
+</div>
+<!-- AI Insights Banner -->
+<section class="mt-16 relative overflow-hidden rounded-[2.5rem] bg-surface-container-low border border-white/5 p-12 text-center group">
+<div class="absolute -top-24 -left-24 w-64 h-64 bg-primary/20 rounded-full blur-[80px]"></div>
+<div class="absolute -bottom-24 -right-24 w-64 h-64 bg-secondary/20 rounded-full blur-[80px]"></div>
+<span class="material-symbols-outlined text-5xl text-transparent bg-clip-text bg-gradient-to-tr from-primary to-secondary mb-6" data-icon="insights">insights</span>
+<h2 class="text-3xl md:text-5xl font-headline font-extrabold text-white mb-6">Personalized Intelligence.</h2>
+<p class="text-on-surface-variant text-lg max-w-2xl mx-auto mb-10">
+                Our neural engine has curated 12 more pieces based on your interest in <span class="text-primary italic">Deep Learning</span> and <span class="text-secondary italic">Futuristic Design</span>.
+            </p>
+<button class="bg-white/5 hover:bg-white/10 text-white px-10 py-4 rounded-full font-bold text-sm tracking-widest transition-all border border-white/10 backdrop-blur-xl">
+                VIEW CURATED FEED
+            </button>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-md z-50 bg-zinc-900/60 backdrop-blur-2xl rounded-3xl border border-white/10 shadow-2xl shadow-purple-900/20 py-2 flex justify-around items-center">
+<!-- Overview (Active) -->
+<a class="flex flex-col items-center gap-1 group" href="#">
+<div class="bg-gradient-to-tr from-purple-500/20 to-cyan-500/20 text-white p-3 rounded-2xl ring-1 ring-white/20 active:scale-90 duration-300 ease-out">
+<span class="material-symbols-outlined" data-icon="overview" style="font-variation-settings: 'FILL' 1;">overview</span>
+</div>
+<span class="font-manrope text-[10px] uppercase tracking-widest text-white">HOME</span>
+</a>
+<!-- Insights -->
+<a class="flex flex-col items-center gap-1 group" href="#">
+<div class="text-zinc-500 p-3 hover:text-purple-300 transition-colors active:scale-90 duration-300 ease-out">
+<span class="material-symbols-outlined" data-icon="insights">insights</span>
+</div>
+<span class="font-manrope text-[10px] uppercase tracking-widest text-zinc-500">TRENDS</span>
+</a>
+<!-- Bolt (Special action) -->
+<a class="flex flex-col items-center gap-1 group" href="#">
+<div class="text-zinc-500 p-3 hover:text-purple-300 transition-colors active:scale-90 duration-300 ease-out">
+<span class="material-symbols-outlined" data-icon="bolt">bolt</span>
+</div>
+<span class="font-manrope text-[10px] uppercase tracking-widest text-zinc-500">LIVE</span>
+</a>
+<!-- Settings -->
+<a class="flex flex-col items-center gap-1 group" href="#">
+<div class="text-zinc-500 p-3 hover:text-purple-300 transition-colors active:scale-90 duration-300 ease-out">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</div>
+<span class="font-manrope text-[10px] uppercase tracking-widest text-zinc-500">PREFS</span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center gap-1 group" href="#">
+<div class="text-zinc-500 p-3 hover:text-purple-300 transition-colors active:scale-90 duration-300 ease-out">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</div>
+<span class="font-manrope text-[10px] uppercase tracking-widest text-zinc-500">ME</span>
+</a>
+</nav>
+<!-- Decoration element (floating orb) -->
+<div class="fixed top-1/2 -right-64 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none -z-10"></div>
+<div class="fixed bottom-0 -left-64 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-[120px] pointer-events-none -z-10"></div>
+</body></html>

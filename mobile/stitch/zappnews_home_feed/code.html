@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-container": "#b195fe",
+              "surface": "#0e0e0e",
+              "surface-variant": "#262626",
+              "surface-container-low": "#131313",
+              "primary-fixed": "#c782ff",
+              "on-primary-container": "#38005e",
+              "surface-container-high": "#1f1f1f",
+              "on-secondary-fixed-variant": "#00586b",
+              "primary": "#d095ff",
+              "on-secondary-fixed": "#003a47",
+              "secondary-fixed": "#77dfff",
+              "secondary": "#40cef3",
+              "on-secondary-container": "#edfaff",
+              "background": "#0e0e0e",
+              "on-tertiary-fixed": "#1d0054",
+              "on-error": "#490013",
+              "secondary-dim": "#28c0e4",
+              "on-background": "#ffffff",
+              "error": "#ff6e84",
+              "on-surface-variant": "#ababab",
+              "primary-container": "#c782ff",
+              "surface-bright": "#2c2c2c",
+              "surface-tint": "#d095ff",
+              "surface-container-highest": "#262626",
+              "inverse-on-surface": "#555555",
+              "surface-container-lowest": "#000000",
+              "tertiary": "#bda6ff",
+              "on-tertiary": "#3a1b81",
+              "on-tertiary-fixed-variant": "#412388",
+              "outline-variant": "#484848",
+              "on-tertiary-container": "#2f0876",
+              "on-primary-fixed-variant": "#450073",
+              "error-dim": "#d73357",
+              "on-surface": "#ffffff",
+              "error-container": "#a70138",
+              "on-primary-fixed": "#000000",
+              "inverse-surface": "#f9f9f9",
+              "tertiary-fixed-dim": "#ae92fb",
+              "surface-container": "#191919",
+              "outline": "#757575",
+              "primary-dim": "#c57eff",
+              "primary-fixed-dim": "#bd6efe",
+              "secondary-fixed-dim": "#48d3f8",
+              "tertiary-dim": "#a88df5",
+              "on-primary": "#490078",
+              "on-secondary": "#00414f",
+              "inverse-primary": "#8534c4",
+              "tertiary-fixed": "#bba2ff",
+              "secondary-container": "#00677d",
+              "on-error-container": "#ffb2b9",
+              "surface-dim": "#0e0e0e"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #000000; }
+        .glass-card {
+            background: rgba(25, 25, 25, 0.6);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+        }
+        .neon-border {
+            position: relative;
+        }
+        .neon-border::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 1.5rem; /* 24px */
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(208, 149, 255, 0.3), rgba(64, 206, 243, 0.3));
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body text-on-surface antialiased selection:bg-primary/30">
+<!-- TopAppBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#000000]/40 backdrop-blur-[40px] border-b border-white/5 flex justify-between items-center px-6 py-4 w-full h-16">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full overflow-hidden border border-white/10">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="close-up portrait of a stylish man with modern haircut against a neutral architectural background with soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLizhbKCoi9EkZQ0hTx4VqtgxlwQB4V2kda7ZCM128VFY6ZDlhk33A549NOyN1Ub5Y8Zt-Ec2IKra-VA4pepVuU8_jbkQ587s87u5d1KlDp981hmLfNcllNTdyHRH4wHVxFyDE_nDoMeOltNnR1tEDY_vd5l_oqHvFxYeEJt8g1Aj0rGnXV4YeRzxvxj_L6iYggMXET4dJQQbtGCyCRedewT67wask9CiNdpyNyTzDg0D6d83SCBD3S44ltmq4M0miqtO4qN4vZwqe"/>
+</div>
+<span class="text-transparent bg-clip-text bg-gradient-to-br from-[#d095ff] to-[#40cef3] font-manrope font-black text-xl">ZappNews</span>
+</div>
+<div class="flex items-center">
+<button class="text-[#d095ff] font-manrope font-extrabold tracking-tighter text-lg hover:text-white transition-colors active:scale-95 duration-200">
+                7 🔥
+            </button>
+</div>
+</nav>
+<main class="pt-24 pb-32 px-5 max-w-2xl mx-auto space-y-8">
+<!-- Streak Highlight Section -->
+<section class="mb-10 text-center">
+<div class="inline-flex flex-col items-center">
+<div class="relative mb-2">
+<div class="absolute inset-0 bg-primary/20 blur-xl rounded-full"></div>
+<div class="relative bg-surface-container rounded-full p-4 border border-primary/20">
+<span class="material-symbols-outlined text-4xl text-primary" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+</div>
+</div>
+<h2 class="font-headline font-extrabold text-3xl tracking-tight">7 days streak</h2>
+<p class="text-on-surface-variant text-sm mt-1">You're on fire! Keep the momentum going.</p>
+</div>
+</section>
+<!-- Vertical Feed -->
+<div class="space-y-6">
+<!-- News Card 1 -->
+<article class="glass-card neon-border rounded-[24px] overflow-hidden group">
+<div class="relative h-48 overflow-hidden">
+<img alt="Blockchain Concept" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="abstract digital visualization of crystalline structures and interconnected nodes with purple and cyan neon lighting on deep black background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqv3QPLAzP32Imx-nDo00HWIYQbGlF6z4Oor4O-IOwRSrr_KDuHfAOrGvxakF2eV3qioiQUbaior7W8X_V9YeOv_FGL7Cnkl6B0vmPUUS0beBP1Vs49jVag9IcREDBUCrzmhWF2ohlmD1MO2gRsLZhe3hBRfpPH1DAen5BAuGMZRpQKqgnWSiOT-dUsyxE_D027bO4VM-3zhZYHVykGCuOGxmklYlgLRt-2g4V1IDAWEfHkD_R4l8srqUxgefGxzmW152sFyYb6avi"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent"></div>
+<div class="absolute top-4 right-4 bg-black/40 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-secondary border border-white/5">
+                        3 min read
+                    </div>
+</div>
+<div class="p-6">
+<div class="flex items-center gap-2 mb-3">
+<span class="text-xs font-semibold text-secondary-dim uppercase tracking-wider">TechCrunch</span>
+<span class="text-on-surface-variant text-[10px]">•</span>
+<span class="text-on-surface-variant text-xs">2h ago</span>
+</div>
+<h3 class="font-headline text-2xl font-extrabold leading-tight text-on-surface mb-3 line-clamp-2">
+                        The Silicon Valley shift: AI agents are replacing traditional SaaS interfaces
+                    </h3>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-6 line-clamp-3">
+                        Artificial Intelligence is moving beyond simple chat boxes. New autonomous agents are beginning to handle complex workflows natively, signaling a paradigm shift in how enterprise software is built and consumed.
+                    </p>
+<button class="w-full bg-gradient-to-r from-primary to-secondary py-4 rounded-xl font-headline font-extrabold text-on-primary-fixed uppercase tracking-widest text-sm active:scale-95 transition-transform">
+                        Try it out
+                    </button>
+</div>
+</article>
+<!-- News Card 2 -->
+<article class="glass-card neon-border rounded-[24px] overflow-hidden group">
+<div class="relative h-48 overflow-hidden">
+<img alt="Space Exploration" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="cinematic view of planet earth from orbit with glowing city lights and nebula textures in the deep space background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4lKATRvk6Y_lBQjFhXyRCh0_jjFb00FjWkAVFa8hSVJedXOuMWo64HCjmI86lZhVocQOWojGcqd0PlB0BEjM4umRCdMTCBW6dtABme7Rl_WO6-pspZPHaprtJyWDCD7Pi71tMDjIqDKNCM3GFA3MlfjKGPNZSjP1mnjNa7OK5XWSnRJ4rRY4hw8dpO0yOJaeFf5gsVdA8Oh5BHmmJi5VhCD2FHpD1nwvo4Cd3LcKo5wApBNgkBO6qoE3IKiuXH1I7x25qmRZWHrJl"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent"></div>
+<div class="absolute top-4 right-4 bg-black/40 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-secondary border border-white/5">
+                        5 min read
+                    </div>
+</div>
+<div class="p-6">
+<div class="flex items-center gap-2 mb-3">
+<span class="text-xs font-semibold text-secondary-dim uppercase tracking-wider">The Verge</span>
+<span class="text-on-surface-variant text-[10px]">•</span>
+<span class="text-on-surface-variant text-xs">4h ago</span>
+</div>
+<h3 class="font-headline text-2xl font-extrabold leading-tight text-on-surface mb-3 line-clamp-2">
+                        Quantum supremacy is closer than we think as IBM reveals new roadmap
+                    </h3>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-6 line-clamp-3">
+                        New hardware breakthroughs in error correction are bringing the dream of stable quantum computing into the realm of possibility for 2026. Experts say this will revolutionize cryptography and drug discovery.
+                    </p>
+<button class="w-full bg-gradient-to-r from-primary to-secondary py-4 rounded-xl font-headline font-extrabold text-on-primary-fixed uppercase tracking-widest text-sm active:scale-95 transition-transform">
+                        Try it out
+                    </button>
+</div>
+</article>
+<!-- News Card 3 -->
+<article class="glass-card neon-border rounded-[24px] overflow-hidden group">
+<div class="relative h-48 overflow-hidden">
+<img alt="Retro Future Tech" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="high-tech workspace with multiple glowing monitors showing code and data visualizations in a futuristic neon blue and magenta palette" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQjb_nPzC9VftOjZS0-XR9dws_ikHUKsVeQ0TPDHU2UbCVuVe4swhS6HpA4-QqszAoBZJfz1jtH04WvvuIq7-CoE_dUX4a3MetMfJOGOdra0cqQ5-Dw9sq8BIdoo2tsS60_R_ne13So0z-wemkHR_0hkUHRVG8zYb2ZQyqpFMU4xaSJRRx8VPGAyKzUiiea4zAKmkWatCeUbBv60DUb4S-0YRaEpXsxt5YLIW681FNJc9ifhLcz33C_IBmj7WFexx2A6o1CL5ndcVz"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent"></div>
+<div class="absolute top-4 right-4 bg-black/40 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-secondary border border-white/5">
+                        2 min read
+                    </div>
+</div>
+<div class="p-6">
+<div class="flex items-center gap-2 mb-3">
+<span class="text-xs font-semibold text-secondary-dim uppercase tracking-wider">Wired</span>
+<span class="text-on-surface-variant text-[10px]">•</span>
+<span class="text-on-surface-variant text-xs">7h ago</span>
+</div>
+<h3 class="font-headline text-2xl font-extrabold leading-tight text-on-surface mb-3 line-clamp-2">
+                        How the next generation of VR is solving motion sickness
+                    </h3>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-6 line-clamp-3">
+                        By integrating inner-ear haptics and eye-tracking foveated rendering, the new wave of headsets creates a seamless vestibular experience that allows for hours of comfortable immersion.
+                    </p>
+<button class="w-full bg-gradient-to-r from-primary to-secondary py-4 rounded-xl font-headline font-extrabold text-on-primary-fixed uppercase tracking-widest text-sm active:scale-95 transition-transform">
+                        Try it out
+                    </button>
+</div>
+</article>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full h-20 flex justify-around items-center pb-safe px-4 bg-[#000000]/60 backdrop-blur-[40px] rounded-t-[20px] border-t border-white/10 shadow-[0px_-20px_40px_rgba(208,149,255,0.08)] z-50">
+<div class="flex flex-col items-center justify-center text-[#d095ff] drop-shadow-[0_0_8px_rgba(208,149,255,0.5)] transition-all Active: translate-y-[-2px] duration-300">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="font-manrope text-[10px] font-semibold uppercase tracking-widest">Feed</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#ababab] hover:text-white transition-all Active: translate-y-[-2px] duration-300">
+<span class="material-symbols-outlined mb-1">explore</span>
+<span class="font-manrope text-[10px] font-semibold uppercase tracking-widest">Explore</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#ababab] hover:text-white transition-all Active: translate-y-[-2px] duration-300">
+<span class="material-symbols-outlined mb-1">bookmark</span>
+<span class="font-manrope text-[10px] font-semibold uppercase tracking-widest">Saved</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#ababab] hover:text-white transition-all Active: translate-y-[-2px] duration-300">
+<span class="material-symbols-outlined mb-1">person</span>
+<span class="font-manrope text-[10px] font-semibold uppercase tracking-widest">Account</span>
+</div>
+</nav>
+<!-- Atmospheric Glows -->
+<div class="fixed top-1/4 -left-20 w-64 h-64 bg-primary/10 blur-[120px] pointer-events-none"></div>
+<div class="fixed bottom-1/4 -right-20 w-80 h-80 bg-secondary/10 blur-[150px] pointer-events-none"></div>
+</body></html>

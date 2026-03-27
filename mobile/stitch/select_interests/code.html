@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-error": "#490013",
+              "surface-dim": "#0e0e0e",
+              "outline": "#757575",
+              "on-secondary-fixed-variant": "#00586d",
+              "tertiary-fixed-dim": "#ff7984",
+              "on-secondary-container": "#eef9ff",
+              "primary-dim": "#9547f7",
+              "on-primary-container": "#330066",
+              "on-tertiary-fixed-variant": "#79001f",
+              "error-dim": "#d73357",
+              "surface-tint": "#c59aff",
+              "on-secondary": "#004050",
+              "on-background": "#ffffff",
+              "primary-fixed": "#ba88ff",
+              "secondary-dim": "#00c0ea",
+              "outline-variant": "#484848",
+              "on-tertiary-container": "#000000",
+              "primary-fixed-dim": "#b075ff",
+              "on-primary-fixed": "#000000",
+              "secondary-fixed-dim": "#37d4ff",
+              "secondary-container": "#00677f",
+              "tertiary-container": "#fc2a53",
+              "background": "#0e0e0e",
+              "surface-container-highest": "#262626",
+              "on-primary-fixed-variant": "#3f007c",
+              "inverse-on-surface": "#555555",
+              "surface-container": "#191919",
+              "primary": "#c59aff",
+              "surface-container-lowest": "#000000",
+              "tertiary-dim": "#e51245",
+              "error-container": "#a70138",
+              "on-surface": "#ffffff",
+              "surface-container-high": "#1f1f1f",
+              "surface": "#0e0e0e",
+              "secondary": "#00cffc",
+              "surface-container-low": "#131313",
+              "primary-container": "#ba88ff",
+              "tertiary-fixed": "#ff9197",
+              "on-tertiary-fixed": "#39000a",
+              "on-error-container": "#ffb2b9",
+              "tertiary": "#ff6f7c",
+              "inverse-primary": "#7e29df",
+              "on-secondary-fixed": "#003a48",
+              "error": "#ff6e84",
+              "inverse-surface": "#f9f9f9",
+              "secondary-fixed": "#80deff",
+              "on-tertiary": "#49000f",
+              "surface-bright": "#2c2c2c",
+              "surface-variant": "#262626",
+              "on-surface-variant": "#ababab",
+              "on-primary": "#420082"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-card {
+        background: rgba(38, 38, 38, 0.4);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+      .neon-glow-primary {
+        box-shadow: 0 0 15px rgba(197, 154, 255, 0.2);
+      }
+      .neon-glow-secondary {
+        box-shadow: 0 0 15px rgba(0, 207, 252, 0.2);
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-container-lowest text-on-surface font-body min-h-screen flex flex-col">
+<!-- Top Navigation Bar (Suppressed based on Onboarding Context, but custom Step Header used) -->
+<header class="fixed top-0 w-full z-50 px-6 pt-8 pb-4 bg-surface-container-lowest/80 backdrop-blur-md">
+<div class="max-w-md mx-auto">
+<div class="flex justify-between items-center mb-6">
+<span class="text-secondary font-headline font-bold tracking-tighter text-lg uppercase">Step 2 of 5</span>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Progress Bar -->
+<div class="h-1 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary to-secondary w-2/5 rounded-full"></div>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-32 pb-32 px-6 overflow-y-auto">
+<div class="max-w-md mx-auto">
+<!-- Header Section -->
+<div class="mb-12 space-y-4">
+<h1 class="font-headline text-5xl font-bold tracking-tight text-white leading-none">
+                    What <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">interests</span> you?
+                </h1>
+<p class="text-on-surface-variant text-lg font-light max-w-[80%]">
+                    Tailor your AI intelligence feed.
+                </p>
+</div>
+<!-- Interests Grid -->
+<div class="grid grid-cols-2 gap-4">
+<!-- Selected Item -->
+<div class="glass-card p-6 rounded-lg border border-primary/20 neon-glow-primary flex flex-col items-start justify-between min-h-[140px] scale-[1.02] transition-transform">
+<div class="bg-primary/20 p-2 rounded-md mb-4">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">construction</span>
+</div>
+<span class="font-headline text-xl font-medium tracking-tight">AI Tools</span>
+</div>
+<!-- Unselected Item -->
+<div class="glass-card p-6 rounded-lg border border-outline-variant/10 flex flex-col items-start justify-between min-h-[140px] hover:border-secondary/30 transition-all group">
+<div class="bg-surface-container-highest p-2 rounded-md mb-4 group-hover:bg-secondary/10 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-secondary">rocket_launch</span>
+</div>
+<span class="font-headline text-xl font-medium tracking-tight text-on-surface-variant group-hover:text-on-surface">Startups</span>
+</div>
+<!-- Unselected Item -->
+<div class="glass-card p-6 rounded-lg border border-outline-variant/10 flex flex-col items-start justify-between min-h-[140px] hover:border-secondary/30 transition-all group">
+<div class="bg-surface-container-highest p-2 rounded-md mb-4 group-hover:bg-secondary/10 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-secondary">neurology</span>
+</div>
+<span class="font-headline text-xl font-medium tracking-tight text-on-surface-variant group-hover:text-on-surface">LLMs</span>
+</div>
+<!-- Selected Item (Secondary Glow) -->
+<div class="glass-card p-6 rounded-lg border border-secondary/30 neon-glow-secondary flex flex-col items-start justify-between min-h-[140px] scale-[1.02] transition-transform">
+<div class="bg-secondary/20 p-2 rounded-md mb-4">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<span class="font-headline text-xl font-medium tracking-tight">Generative AI</span>
+</div>
+<!-- Unselected Item -->
+<div class="glass-card p-6 rounded-lg border border-outline-variant/10 flex flex-col items-start justify-between min-h-[140px] hover:border-secondary/30 transition-all group">
+<div class="bg-surface-container-highest p-2 rounded-md mb-4 group-hover:bg-secondary/10 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-secondary">precision_manufacturing</span>
+</div>
+<span class="font-headline text-xl font-medium tracking-tight text-on-surface-variant group-hover:text-on-surface">Robotics</span>
+</div>
+<!-- Unselected Item -->
+<div class="glass-card p-6 rounded-lg border border-outline-variant/10 flex flex-col items-start justify-between min-h-[140px] hover:border-secondary/30 transition-all group">
+<div class="bg-surface-container-highest p-2 rounded-md mb-4 group-hover:bg-secondary/10 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-secondary">balance</span>
+</div>
+<span class="font-headline text-xl font-medium tracking-tight text-on-surface-variant group-hover:text-on-surface">Ethical AI</span>
+</div>
+<!-- Unselected Item -->
+<div class="glass-card p-6 rounded-lg border border-outline-variant/10 flex flex-col items-start justify-between min-h-[140px] hover:border-secondary/30 transition-all group">
+<div class="bg-surface-container-highest p-2 rounded-md mb-4 group-hover:bg-secondary/10 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-secondary">database</span>
+</div>
+<span class="font-headline text-xl font-medium tracking-tight text-on-surface-variant group-hover:text-on-surface">Big Data</span>
+</div>
+<!-- Unselected Item -->
+<div class="glass-card p-6 rounded-lg border border-outline-variant/10 flex flex-col items-start justify-between min-h-[140px] hover:border-secondary/30 transition-all group">
+<div class="bg-surface-container-highest p-2 rounded-md mb-4 group-hover:bg-secondary/10 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-secondary">payments</span>
+</div>
+<span class="font-headline text-xl font-medium tracking-tight text-on-surface-variant group-hover:text-on-surface">FinTech AI</span>
+</div>
+</div>
+<!-- Editorial Spacing/Negative Space -->
+<div class="py-12"></div>
+</div>
+</main>
+<!-- Bottom Action Bar -->
+<footer class="fixed bottom-0 left-0 w-full p-6 pb-10 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/95 to-transparent">
+<div class="max-w-md mx-auto">
+<button class="w-full h-16 rounded-lg bg-gradient-to-r from-primary to-secondary text-on-primary-fixed font-headline font-bold text-lg tracking-wide shadow-xl active:scale-95 transition-transform">
+                Continue
+            </button>
+<p class="text-center text-on-surface-variant text-xs mt-4 uppercase tracking-[0.2em] font-medium opacity-50">
+                You can change these later in settings
+            </p>
+</div>
+</footer>
+<!-- Aesthetic Ambient Background Glow -->
+<div class="fixed top-[-20%] right-[-10%] w-[80%] h-[50%] bg-primary/5 blur-[120px] pointer-events-none -z-10"></div>
+<div class="fixed bottom-[-10%] left-[-10%] w-[60%] h-[40%] bg-secondary/5 blur-[100px] pointer-events-none -z-10"></div>
+</body></html>

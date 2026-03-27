@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "inverse-surface": "#f9f9f9",
+              "surface-dim": "#0e0e0e",
+              "primary-fixed": "#c185ff",
+              "tertiary-fixed": "#ff909e",
+              "on-secondary": "#003549",
+              "tertiary-fixed-dim": "#fa7c8d",
+              "on-secondary-fixed-variant": "#005776",
+              "outline": "#757575",
+              "background": "#0e0e0e",
+              "secondary-fixed": "#9adaff",
+              "on-error": "#490013",
+              "on-secondary-container": "#f1f9ff",
+              "on-error-container": "#ffb2b9",
+              "error-dim": "#d73357",
+              "primary-dim": "#9c42f4",
+              "tertiary": "#ff8b9a",
+              "surface-bright": "#2c2c2c",
+              "on-primary-container": "#350062",
+              "on-surface": "#ffffff",
+              "on-tertiary-fixed-variant": "#711229",
+              "error-container": "#a70138",
+              "on-secondary-fixed": "#00394f",
+              "inverse-primary": "#8523dd",
+              "on-surface-variant": "#ababab",
+              "tertiary-container": "#f7798b",
+              "error": "#ff6e84",
+              "inverse-on-surface": "#555555",
+              "on-primary-fixed-variant": "#420078",
+              "on-primary": "#46007d",
+              "surface-container-lowest": "#000000",
+              "surface-variant": "#262626",
+              "secondary": "#00bdfd",
+              "surface-container-low": "#131313",
+              "primary-container": "#c185ff",
+              "surface-tint": "#ca98ff",
+              "primary-fixed-dim": "#b772ff",
+              "on-tertiary-container": "#4d0015",
+              "on-background": "#ffffff",
+              "surface-container-highest": "#262626",
+              "on-primary-fixed": "#000000",
+              "secondary-container": "#00668a",
+              "primary": "#ca98ff",
+              "surface-container": "#191919",
+              "surface": "#0e0e0e",
+              "outline-variant": "#484848",
+              "on-tertiary-fixed": "#39000e",
+              "secondary-fixed-dim": "#71ceff",
+              "surface-container-high": "#1f1f1f",
+              "secondary-dim": "#00afea",
+              "on-tertiary": "#62041f",
+              "tertiary-dim": "#f47788"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-header {
+            background: rgba(38, 38, 38, 0.4);
+            backdrop-filter: blur(24px);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-left: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .tonal-transition {
+            background: linear-gradient(to bottom, transparent, #131313);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body selection:bg-primary/30">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-zinc-950/40 backdrop-blur-xl shadow-[0_8px_32px_0_rgba(138,43,226,0.08)] flex justify-between items-center px-6 h-16 w-full">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container-highest ring-1 ring-white/10">
+<img alt="Profile" class="w-full h-full object-cover" data-alt="Close-up portrait of a man with minimalist aesthetic, soft dramatic lighting on high-end dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxnrXRmqMx75hjSmI6duW7z_cr-90lRN095bbin3JEUPZ-ZlNeQsi6lg4qcbjhNTOITkf9wqsqkum2npn5wum77RCMpJ1WYQQuCzAqKRAzZBybG8H9gqN31YayE1wDK-MRCWg6f8ihAagG7ni8pIwUs8ElTh5-csN-0PGFwqGJjvuVKp4yFDfU-e5bFPHjo-Y6hkbYTvuzXUetjCy4rNpTane15nRiLc9NQs0iMhxAT6_oSiIPrRw5uDhb2YZOYTDyU50E4QBhBg_q"/>
+</div>
+<span class="text-xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400 font-headline">ETHEREAL</span>
+</div>
+<button class="text-purple-400 dark:text-purple-300 hover:opacity-80 transition-opacity active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="bubble_chart">bubble_chart</span>
+</button>
+</header>
+<main class="pt-24 pb-32 px-6 max-w-2xl mx-auto min-h-screen">
+<!-- Editorial Header -->
+<section class="mb-12">
+<h1 class="text-5xl font-headline font-extrabold tracking-tight text-on-surface mb-2">Settings</h1>
+<p class="text-on-surface-variant font-medium">Configure your intelligence interface and neural links.</p>
+</section>
+<!-- Profile Glass Card -->
+<section class="mb-10">
+<div class="glass-header rounded-3xl p-6 flex items-center justify-between group cursor-pointer hover:bg-white/5 transition-colors">
+<div class="flex items-center gap-5">
+<div class="relative">
+<div class="w-16 h-16 rounded-2xl overflow-hidden ring-2 ring-primary/20">
+<img alt="Profile Large" class="w-full h-full object-cover" data-alt="Symmetric headshot of professional male on black studio background, high-end editorial lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlYq6SZrb-ATdj_xZEmO8edNl8sfeYPhNXYHFLAl8pGYaK9GJm1JuoSGLiA9BIqQ9bFHm2_eENU26BcOQ3gunCYgIpvXZuci8vPnEmTW_Z9fzTk0HFpsFYWlIBMveWkdCnB3Wy6mLBn-Ix54r0bA8QxPv_cx7SUuYocUdq0rWipanl9uyaOPqqJ3bjBBaZdPFDCIzAS_2jEGttGb98iyovOUUMSJfpOLThjiLekdu36kkBGHWsORgULXkvAlJISKXqfJyK_jdw6ebQ"/>
+</div>
+<div class="absolute -bottom-1 -right-1 w-5 h-5 bg-secondary rounded-full border-2 border-black flex items-center justify-center">
+<span class="material-symbols-outlined text-[10px] text-black font-bold" data-icon="bolt" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+</div>
+<div>
+<h2 class="text-xl font-bold font-headline">Julian Thorne</h2>
+<p class="text-on-surface-variant text-sm">Priority Access • Neural Tier 3</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+</div>
+</section>
+<!-- Settings Groups -->
+<div class="space-y-12">
+<!-- Intelligence Engine -->
+<section>
+<div class="flex items-center gap-2 mb-6 px-2">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="auto_awesome" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<h3 class="font-headline text-xs uppercase tracking-[0.2em] text-primary/80 font-bold">Intelligence Engine</h3>
+</div>
+<div class="bg-surface-container-low rounded-[2rem] overflow-hidden">
+<div class="p-6 flex items-center justify-between border-b border-white/5">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary" data-icon="psychology">psychology</span>
+</div>
+<div>
+<p class="font-semibold text-on-surface">Neural Processing</p>
+<p class="text-xs text-on-surface-variant">Low-latency cloud inference</p>
+</div>
+</div>
+<button class="w-12 h-6 bg-secondary/20 rounded-full relative flex items-center px-1 transition-colors border border-secondary/30">
+<div class="w-4 h-4 bg-secondary rounded-full shadow-[0_0_10px_rgba(0,189,253,0.5)] translate-x-6"></div>
+</button>
+</div>
+<div class="p-6 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="history_edu">history_edu</span>
+</div>
+<div>
+<p class="font-semibold text-on-surface">Context Memory</p>
+<p class="text-xs text-on-surface-variant">Persistent long-term recall</p>
+</div>
+</div>
+<button class="w-12 h-6 bg-white/10 rounded-full relative flex items-center px-1 transition-colors">
+<div class="w-4 h-4 bg-on-surface-variant rounded-full translate-x-0"></div>
+</button>
+</div>
+</div>
+</section>
+<!-- Appearance & Biometrics -->
+<section>
+<div class="flex items-center gap-2 mb-6 px-2">
+<span class="material-symbols-outlined text-secondary text-sm" data-icon="visibility" style="font-variation-settings: 'FILL' 1;">visibility</span>
+<h3 class="font-headline text-xs uppercase tracking-[0.2em] text-secondary/80 font-bold">Interface &amp; Security</h3>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-low p-6 rounded-[2rem] aspect-square flex flex-col justify-between hover:bg-surface-container-high transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-3xl text-primary" data-icon="dark_mode">dark_mode</span>
+<div>
+<p class="font-bold">OLED Theme</p>
+<p class="text-xs text-on-surface-variant">Deep Black Enabled</p>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-[2rem] aspect-square flex flex-col justify-between hover:bg-surface-container-high transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-3xl text-secondary" data-icon="fingerprint">fingerprint</span>
+<div>
+<p class="font-bold">Biometrics</p>
+<p class="text-xs text-on-surface-variant">Face ID Active</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Connectivity -->
+<section>
+<div class="flex items-center gap-2 mb-6 px-2">
+<span class="material-symbols-outlined text-error text-sm" data-icon="cell_tower" style="font-variation-settings: 'FILL' 1;">cell_tower</span>
+<h3 class="font-headline text-xs uppercase tracking-[0.2em] text-error/80 font-bold">Connectivity</h3>
+</div>
+<div class="bg-surface-container-low rounded-[2rem] overflow-hidden divide-y divide-white/5">
+<div class="p-6 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="satellite_alt">satellite_alt</span>
+<span class="font-medium">Starlink Neural Link</span>
+</div>
+<span class="text-xs font-bold text-secondary">CONNECTED</span>
+</div>
+<div class="p-6 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="devices_other">devices_other</span>
+<span class="font-medium">External Synthesis</span>
+</div>
+<span class="text-xs font-bold text-on-surface-variant">READY</span>
+</div>
+</div>
+</section>
+</div>
+<!-- Logout Trigger -->
+<button class="mt-16 w-full py-5 rounded-3xl bg-error/10 border border-error/20 text-error font-bold tracking-wide hover:bg-error/20 transition-all active:scale-[0.98]">
+            Disconnect Neural Link
+        </button>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-md mx-auto z-50 bg-zinc-900/60 backdrop-blur-2xl rounded-3xl border border-white/10 shadow-2xl shadow-purple-900/20 flex justify-around items-center py-2">
+<a class="text-zinc-500 p-3 hover:text-purple-300 transition-colors active:scale-90 duration-300 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="overview">overview</span>
+</a>
+<a class="text-zinc-500 p-3 hover:text-purple-300 transition-colors active:scale-90 duration-300 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="insights">insights</span>
+</a>
+<a class="text-zinc-500 p-3 hover:text-purple-300 transition-colors active:scale-90 duration-300 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="bolt">bolt</span>
+</a>
+<a class="bg-gradient-to-tr from-purple-500/20 to-cyan-500/20 text-white p-3 rounded-2xl ring-1 ring-white/20 active:scale-90 duration-300 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="settings" style="font-variation-settings: 'FILL' 1;">settings</span>
+</a>
+<a class="text-zinc-500 p-3 hover:text-purple-300 transition-colors active:scale-90 duration-300 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</a>
+</nav>
+<!-- Background Elements -->
+<div class="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/10 blur-[120px] rounded-full pointer-events-none z-[-1]"></div>
+<div class="fixed bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-secondary/10 blur-[120px] rounded-full pointer-events-none z-[-1]"></div>
+
+```</body></html>

@@ -19,20 +19,27 @@ const RSS_FEEDS: { url: string; name: string; category: string }[] = [
   { url: 'https://www.anthropic.com/rss.xml', name: 'Anthropic', category: 'ai_company' },
   { url: 'https://blog.google/technology/ai/rss/', name: 'Google AI Blog', category: 'ai_company' },
   { url: 'https://ai.meta.com/blog/rss/', name: 'Meta AI', category: 'ai_company' },
+  { url: 'https://www.microsoft.com/en-us/research/feed/', name: 'Microsoft Research', category: 'ai_company' },
+  { url: 'https://aws.amazon.com/blogs/machine-learning/feed/', name: 'AWS ML Blog', category: 'ai_company' },
   
-  // Tech News
+  // Tech News & Industry Updates
   { url: 'https://techcrunch.com/category/artificial-intelligence/feed/', name: 'TechCrunch AI', category: 'tech_news' },
   { url: 'https://www.theverge.com/rss/ai-artificial-intelligence/index.xml', name: 'The Verge AI', category: 'tech_news' },
   { url: 'https://www.wired.com/feed/tag/ai/latest/rss', name: 'Wired AI', category: 'tech_news' },
   { url: 'https://venturebeat.com/category/ai/feed/', name: 'VentureBeat AI', category: 'tech_news' },
+  { url: 'https://www.technologyreview.com/feed/', name: 'MIT Tech Review', category: 'tech_news' },
+  { url: 'https://www.artificialintelligence-news.com/feed/', name: 'AI News', category: 'tech_news' },
   
   // Research & Academic
   { url: 'https://bair.berkeley.edu/blog/feed.xml', name: 'Berkeley AI Research', category: 'research' },
   { url: 'https://ai.googleblog.com/feeds/posts/default', name: 'Google AI Research', category: 'research' },
+  { url: 'https://machinelearning.apple.com/rss.xml', name: 'Apple ML Research', category: 'research' },
   
   // Developer & Tools
   { url: 'https://huggingface.co/blog/feed.xml', name: 'Hugging Face', category: 'developer' },
   { url: 'https://www.langchain.com/blog/rss.xml', name: 'LangChain', category: 'developer' },
+  { url: 'https://pytorch.org/blog/feed.xml', name: 'PyTorch Blog', category: 'developer' },
+  { url: 'https://blog.tensorflow.org/feeds/posts/default', name: 'TensorFlow Blog', category: 'developer' },
   
   // GitHub Trending & Releases
   { url: 'https://github.com/trending/python.atom', name: 'GitHub Trending Python', category: 'github' },
@@ -40,9 +47,18 @@ const RSS_FEEDS: { url: string; name: string; category: string }[] = [
   { url: 'https://github.com/trending/typescript.atom', name: 'GitHub Trending TypeScript', category: 'github' },
   { url: 'https://github.com/trending.atom', name: 'GitHub Trending All', category: 'github' },
   
-  // Newsletters (if they have RSS)
+  // Twitter-Accessible Public Feeds (Nitter alternatives & RSS services)
+  { url: 'https://nitter.net/OpenAI/rss', name: 'OpenAI Twitter (Nitter)', category: 'social' },
+  { url: 'https://nitter.net/AnthropicAI/rss', name: 'Anthropic Twitter (Nitter)', category: 'social' },
+  { url: 'https://nitter.net/GoogleAI/rss', name: 'Google AI Twitter (Nitter)', category: 'social' },
+  { url: 'https://nitter.net/ylecun/rss', name: 'Yann LeCun (Nitter)', category: 'social' },
+  { url: 'https://nitter.net/karpathy/rss', name: 'Andrej Karpathy (Nitter)', category: 'social' },
+  { url: 'https://nitter.net/hardmaru/rss', name: 'hardmaru (Nitter)', category: 'social' },
+  
+  // Newsletters & Communities
   { url: 'https://bensbites.beehiiv.com/feed', name: "Ben's Bites", category: 'newsletter' },
   { url: 'https://www.deeplearning.ai/the-batch/feed/', name: 'The Batch (DeepLearning.AI)', category: 'newsletter' },
+  { url: 'https://www.aisnakeoil.com/feed', name: 'AI Snake Oil', category: 'newsletter' },
 ];
 
 export async function fetchRSSFeeds(): Promise<FetchResult> {

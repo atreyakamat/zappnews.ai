@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary-dim": "#00c0ea",
+              "outline-variant": "#484848",
+              "inverse-surface": "#f9f9f9",
+              "on-tertiary-fixed": "#39000a",
+              "background": "#0e0e0e",
+              "surface": "#0e0e0e",
+              "tertiary-dim": "#e51245",
+              "error": "#ff6e84",
+              "primary": "#c59aff",
+              "on-primary-fixed": "#000000",
+              "surface-container-low": "#131313",
+              "tertiary-fixed": "#ff9197",
+              "on-secondary-fixed-variant": "#00586d",
+              "error-container": "#a70138",
+              "surface-bright": "#2c2c2c",
+              "on-tertiary": "#49000f",
+              "outline": "#757575",
+              "surface-tint": "#c59aff",
+              "on-tertiary-fixed-variant": "#79001f",
+              "error-dim": "#d73357",
+              "secondary": "#00cffc",
+              "primary-dim": "#9547f7",
+              "on-primary": "#420082",
+              "primary-fixed-dim": "#b075ff",
+              "on-error": "#490013",
+              "secondary-fixed": "#80deff",
+              "surface-variant": "#262626",
+              "surface-dim": "#0e0e0e",
+              "on-tertiary-container": "#000000",
+              "surface-container-high": "#1f1f1f",
+              "on-error-container": "#ffb2b9",
+              "primary-container": "#ba88ff",
+              "on-secondary": "#004050",
+              "primary-fixed": "#ba88ff",
+              "tertiary-container": "#fc2a53",
+              "on-surface-variant": "#ababab",
+              "inverse-primary": "#7e29df",
+              "on-primary-fixed-variant": "#3f007c",
+              "surface-container-lowest": "#000000",
+              "surface-container-highest": "#262626",
+              "tertiary": "#ff6f7c",
+              "tertiary-fixed-dim": "#ff7984",
+              "secondary-fixed-dim": "#37d4ff",
+              "on-surface": "#ffffff",
+              "surface-container": "#191919",
+              "secondary-container": "#00677f",
+              "on-background": "#ffffff",
+              "on-secondary-container": "#eef9ff",
+              "on-secondary-fixed": "#003a48",
+              "inverse-on-surface": "#555555",
+              "on-primary-container": "#330066"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(38, 38, 38, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .neon-glow-active {
+            box-shadow: 0 0 20px rgba(197, 154, 255, 0.2);
+        }
+        ::-webkit-scrollbar {
+            width: 0px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-container-lowest text-on-surface font-body selection:bg-primary/30 min-h-screen">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-50 w-full bg-black/60 backdrop-blur-xl shadow-[0_0_40px_rgba(197,154,255,0.1)] no-border tonal-shift bg-[#0e0e0e]">
+<div class="flex items-center justify-between px-6 py-4 w-full">
+<div class="flex items-center gap-4">
+<button class="text-[#c59aff] scale-95 active:scale-90 transition-transform hover:bg-[#262626] p-2 rounded-full">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-['Space_Grotesk'] font-bold tracking-tight text-2xl text-[#c59aff]">Preferences</h1>
+</div>
+<div class="flex items-center gap-3">
+<button class="text-[#ababab] hover:bg-[#262626] p-2 rounded-full transition-all duration-300">
+<span class="material-symbols-outlined" data-icon="tune">tune</span>
+</button>
+<div class="w-10 h-10 rounded-full border-2 border-primary/20 p-0.5 overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover rounded-full" data-alt="Close-up portrait of a young professional woman with soft studio lighting and a clean neutral background for a premium user profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYNJovUw9VertKgzmBXDlCLGpHs7wewRf2O1mi7dKptdWmxSpvAAunuvhDN3sOk500_C6jZGezyWwnLzdM_CJaKB0YLLw2ndN_oMMFseFtB7CNfB8RbmKNeF7NZtsgCMav8-Iwan2iPcsfMkz2FtR4ygGcj_5hm0wXeJJETUfkZTGAAduYielQ0uQeRx7dTEI0mA0uIZfS_J40S-saVyCQLQEz0ViNG_jDJa9bSPUlMjdYYcBdbYq-ius1mQc0fHo6dtJKZ6veD7ke"/>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-2xl mx-auto px-6 pt-8 pb-32 space-y-10">
+<!-- AI Identity Section -->
+<section class="relative overflow-hidden p-8 rounded-lg bg-gradient-to-br from-surface-container-high to-surface-container-low border border-outline-variant/10">
+<div class="absolute -top-24 -right-24 w-48 h-48 bg-primary/10 blur-[80px]"></div>
+<div class="absolute -bottom-24 -left-24 w-48 h-48 bg-secondary/10 blur-[80px]"></div>
+<div class="relative z-10 flex items-center justify-between">
+<div>
+<h2 class="font-headline text-3xl font-bold tracking-tighter text-on-surface">Curator Identity</h2>
+<p class="text-on-surface-variant text-sm mt-1">Alex Rivera • AI Level 4</p>
+</div>
+<div class="bg-primary/20 px-4 py-2 rounded-full border border-primary/30">
+<span class="text-primary font-headline font-bold text-xs uppercase tracking-widest">Premium Curator</span>
+</div>
+</div>
+</section>
+<!-- Source Preferences -->
+<section class="space-y-4">
+<div class="flex items-center gap-2 px-2">
+<span class="material-symbols-outlined text-secondary" data-icon="hub">hub</span>
+<h3 class="font-headline text-lg font-bold uppercase tracking-widest text-on-surface-variant">Sources</h3>
+</div>
+<div class="glass-panel rounded-lg p-2 space-y-1">
+<!-- Source Row -->
+<div class="flex items-center justify-between p-4 hover:bg-white/5 rounded-md transition-all group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-surface-container-highest rounded-full flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="terminal">terminal</span>
+</div>
+<div>
+<p class="font-medium">TechCrunch</p>
+<p class="text-xs text-on-surface-variant">Venture capital &amp; startups</p>
+</div>
+</div>
+<button class="w-12 h-6 rounded-full bg-secondary p-1 flex items-center justify-end shadow-[0_0_10px_rgba(0,207,252,0.3)]">
+<div class="w-4 h-4 bg-white rounded-full"></div>
+</button>
+</div>
+<!-- Source Row -->
+<div class="flex items-center justify-between p-4 hover:bg-white/5 rounded-md transition-all group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-surface-container-highest rounded-full flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="layers">layers</span>
+</div>
+<div>
+<p class="font-medium">The Verge</p>
+<p class="text-xs text-on-surface-variant">Tech, science &amp; culture</p>
+</div>
+</div>
+<button class="w-12 h-6 rounded-full bg-secondary p-1 flex items-center justify-end shadow-[0_0_10px_rgba(0,207,252,0.3)]">
+<div class="w-4 h-4 bg-white rounded-full"></div>
+</button>
+</div>
+<!-- Source Row -->
+<div class="flex items-center justify-between p-4 hover:bg-white/5 rounded-md transition-all group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-surface-container-highest rounded-full flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="neurology">neurology</span>
+</div>
+<div>
+<p class="font-medium">AI Ethics Lab</p>
+<p class="text-xs text-on-surface-variant">Research &amp; safety papers</p>
+</div>
+</div>
+<button class="w-12 h-6 rounded-full bg-outline-variant p-1 flex items-center justify-start">
+<div class="w-4 h-4 bg-on-surface-variant rounded-full"></div>
+</button>
+</div>
+</div>
+</section>
+<!-- Topic Filters Section -->
+<section class="space-y-4">
+<div class="flex items-center gap-2 px-2">
+<span class="material-symbols-outlined text-primary" data-icon="filter_list">filter_list</span>
+<h3 class="font-headline text-lg font-bold uppercase tracking-widest text-on-surface-variant">Topic Filters</h3>
+</div>
+<div class="flex flex-wrap gap-3">
+<button class="px-6 py-3 rounded-full bg-gradient-to-r from-primary to-secondary text-on-primary-fixed font-bold font-headline text-sm neon-glow-active transition-transform active:scale-95">LLM</button>
+<button class="px-6 py-3 rounded-full border border-outline-variant/30 bg-surface-container text-on-surface-variant font-medium text-sm hover:border-primary/50 transition-all">AI Tools</button>
+<button class="px-6 py-3 rounded-full bg-gradient-to-r from-primary/20 to-secondary/20 border border-secondary/40 text-secondary font-bold font-headline text-sm transition-transform active:scale-95">Startups</button>
+<button class="px-6 py-3 rounded-full border border-outline-variant/30 bg-surface-container text-on-surface-variant font-medium text-sm hover:border-primary/50 transition-all">Robotics</button>
+<button class="px-6 py-3 rounded-full border border-outline-variant/30 bg-surface-container text-on-surface-variant font-medium text-sm hover:border-primary/50 transition-all">Neuroscience</button>
+<button class="px-6 py-3 rounded-full border border-outline-variant/30 bg-surface-container text-on-surface-variant font-medium text-sm hover:border-primary/50 transition-all">Quantum</button>
+<button class="px-6 py-3 rounded-full bg-gradient-to-r from-primary/20 to-secondary/20 border border-secondary/40 text-secondary font-bold font-headline text-sm">Synthetic Bio</button>
+</div>
+</section>
+<!-- Notification Settings -->
+<section class="space-y-4">
+<div class="flex items-center gap-2 px-2">
+<span class="material-symbols-outlined text-secondary" data-icon="notifications_active">notifications_active</span>
+<h3 class="font-headline text-lg font-bold uppercase tracking-widest text-on-surface-variant">Notifications</h3>
+</div>
+<div class="glass-panel rounded-lg overflow-hidden divide-y divide-outline-variant/10">
+<div class="flex items-center justify-between p-5">
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-primary" data-icon="auto_awesome">auto_awesome</span>
+<div>
+<p class="font-medium">Daily Briefing</p>
+<p class="text-xs text-on-surface-variant">A concise AI summary of the last 24h</p>
+</div>
+</div>
+<div class="w-12 h-6 rounded-full bg-secondary p-1 flex items-center justify-end">
+<div class="w-4 h-4 bg-white rounded-full"></div>
+</div>
+</div>
+<div class="flex items-center justify-between p-5">
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-secondary" data-icon="bolt">bolt</span>
+<div>
+<p class="font-medium">Breaking News</p>
+<p class="text-xs text-on-surface-variant">Real-time alerts for critical events</p>
+</div>
+</div>
+<div class="w-12 h-6 rounded-full bg-outline-variant p-1 flex items-center justify-start">
+<div class="w-4 h-4 bg-on-surface-variant rounded-full"></div>
+</div>
+</div>
+<div class="flex items-center justify-between p-5">
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-primary" data-icon="local_fire_department">local_fire_department</span>
+<div>
+<p class="font-medium">Streak Reminders</p>
+<p class="text-xs text-on-surface-variant">Don't break your 12-day reading streak</p>
+</div>
+</div>
+<div class="w-12 h-6 rounded-full bg-secondary p-1 flex items-center justify-end">
+<div class="w-4 h-4 bg-white rounded-full"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Reading Schedule -->
+<section class="space-y-4">
+<div class="flex items-center gap-2 px-2">
+<span class="material-symbols-outlined text-primary" data-icon="schedule">schedule</span>
+<h3 class="font-headline text-lg font-bold uppercase tracking-widest text-on-surface-variant">Reading Schedule</h3>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<button class="p-5 rounded-lg glass-panel border border-secondary/30 flex flex-col items-center gap-2 transition-all hover:bg-secondary/10">
+<span class="text-xs uppercase tracking-tighter text-secondary font-bold">Morning Slot</span>
+<span class="font-headline text-2xl font-bold">8:00 AM</span>
+<span class="text-[10px] text-on-surface-variant">Active</span>
+</button>
+<button class="p-5 rounded-lg glass-panel border border-outline-variant/20 flex flex-col items-center gap-2 transition-all hover:border-primary/50 opacity-60">
+<span class="text-xs uppercase tracking-tighter text-on-surface-variant font-bold">Evening Slot</span>
+<span class="font-headline text-2xl font-bold">6:00 PM</span>
+<span class="text-[10px] text-on-surface-variant">Disabled</span>
+</button>
+</div>
+<button class="w-full py-4 glass-panel border border-dashed border-outline-variant/30 rounded-lg flex items-center justify-center gap-2 text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+<span class="font-medium">Add custom slot</span>
+</button>
+</section>
+</main>
+<!-- Navigation Shell (Desktop Hidden, Mobile Visible) -->
+<nav class="fixed bottom-0 w-full z-50 pb-safe md:hidden bg-black/60 backdrop-blur-2xl no-border tonal-shift via-whitespace">
+<div class="flex justify-around items-center h-20 px-8 w-full">
+<a class="flex flex-col items-center justify-center text-[#ababab] opacity-50 hover:text-[#c59aff]" href="#">
+<span class="material-symbols-outlined" data-icon="amp_stories">amp_stories</span>
+<span class="font-['Inter'] text-[10px] uppercase tracking-widest font-bold">Feed</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#ababab] opacity-50 hover:text-[#c59aff]" href="#">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="font-['Inter'] text-[10px] uppercase tracking-widest font-bold">Explore</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#ababab] opacity-50 hover:text-[#c59aff]" href="#">
+<span class="material-symbols-outlined" data-icon="bookmarks">bookmarks</span>
+<span class="font-['Inter'] text-[10px] uppercase tracking-widest font-bold">Saved</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#00cffc] transition-all duration-300 scale-110" href="#">
+<span class="material-symbols-outlined" data-icon="settings" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-['Inter'] text-[10px] uppercase tracking-widest font-bold">Settings</span>
+</a>
+</div>
+</nav>
+<!-- Sidebar for Desktop -->
+<aside class="hidden md:flex fixed left-0 top-0 w-80 h-full bg-[#000000] rounded-r-[2rem] flex flex-col gap-2 py-8 z-40 border-r border-outline-variant/10 shadow-2xl shadow-[#c59aff]/5">
+<div class="px-8 mb-10">
+<h2 class="text-[#c59aff] font-bold font-headline text-3xl tracking-tighter">ZappNews</h2>
+</div>
+<div class="px-6 py-4 flex items-center gap-4 mb-6">
+<div class="w-12 h-12 rounded-full overflow-hidden">
+<img alt="Alex Rivera" class="w-full h-full object-cover" data-alt="Modern professional headshot of a person with a slight smile in a high-tech minimalist office environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgfxanYsvOseZB42JyTzDCYHDLpoiSU5oWu6A7Yk7gBtv8NDf_nDaitjA0hjjt4YVAvyD3xfFLqnhBI1onequN5loeqXNNDhTHI4-_vV-n-ksZtKf6b1TH9i2cAUx_njkansqsP7AXBkt9JZ1wFxurfcp1KPkKDeIDpJ3XS_CLxX39jwqDsmH46yKtGNJQUmvETchWdC2fa_zUq2lN6QXcT07ArskkHDXeGy-bf8seW0AOpp0wsSfRD71eqZqvOcdzbcUnwzDFqmfI"/>
+</div>
+<div>
+<p class="text-on-surface font-headline font-bold">Alex Rivera</p>
+<p class="text-on-surface-variant text-xs">Premium Curator • Lvl 4</p>
+</div>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="text-[#ababab] px-6 py-3 hover:bg-[#191919] transition-all flex items-center gap-4" href="#">
+<span class="material-symbols-outlined" data-icon="public">public</span>
+<span class="font-['Space_Grotesk'] text-lg">Global News</span>
+</a>
+<a class="text-[#ababab] px-6 py-3 hover:bg-[#191919] transition-all flex items-center gap-4" href="#">
+<span class="material-symbols-outlined" data-icon="insights">insights</span>
+<span class="font-['Space_Grotesk'] text-lg">Tech Analysis</span>
+</a>
+<a class="text-[#ababab] px-6 py-3 hover:bg-[#191919] transition-all flex items-center gap-4" href="#">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+<span class="font-['Space_Grotesk'] text-lg">AI Research</span>
+</a>
+<a class="bg-gradient-to-r from-[#c59aff]/20 to-transparent border-l-4 border-[#00cffc] text-[#00cffc] font-bold px-6 py-3 flex items-center gap-4" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-['Space_Grotesk'] text-lg">Preferences</span>
+</a>
+<a class="text-[#ababab] px-6 py-3 hover:bg-[#191919] transition-all flex items-center gap-4" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-['Space_Grotesk'] text-lg">Archive</span>
+</a>
+</nav>
+</aside>
+</body></html>

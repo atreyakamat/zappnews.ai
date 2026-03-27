@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ZappNews - The Silicon Frontier</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-surface": "#ffffff",
+                        "error": "#ff6e84",
+                        "outline": "#757575",
+                        "on-background": "#ffffff",
+                        "inverse-surface": "#f9f9f9",
+                        "on-error": "#490013",
+                        "background": "#0e0e0e",
+                        "primary-container": "#ba88ff",
+                        "inverse-on-surface": "#555555",
+                        "surface-dim": "#0e0e0e",
+                        "tertiary-fixed": "#ff9197",
+                        "surface-container-lowest": "#000000",
+                        "tertiary-container": "#fc2a53",
+                        "on-surface-variant": "#ababab",
+                        "primary-dim": "#9547f7",
+                        "primary-fixed-dim": "#b075ff",
+                        "error-dim": "#d73357",
+                        "on-secondary": "#004050",
+                        "primary": "#c59aff",
+                        "on-tertiary-container": "#000000",
+                        "surface-container-high": "#1f1f1f",
+                        "surface-tint": "#c59aff",
+                        "tertiary": "#ff6f7c",
+                        "secondary": "#00cffc",
+                        "on-primary": "#420082",
+                        "surface-container-highest": "#262626",
+                        "surface": "#0e0e0e",
+                        "outline-variant": "#484848",
+                        "surface-variant": "#262626",
+                        "secondary-container": "#00677f",
+                        "primary-fixed": "#ba88ff",
+                        "on-tertiary-fixed": "#39000a",
+                        "on-primary-fixed": "#000000",
+                        "surface-container-low": "#131313",
+                        "surface-container": "#191919",
+                        "on-tertiary-fixed-variant": "#79001f",
+                        "on-primary-container": "#330066",
+                        "secondary-dim": "#00c0ea",
+                        "on-secondary-fixed-variant": "#00586d",
+                        "tertiary-dim": "#e51245",
+                        "on-secondary-fixed": "#003a48",
+                        "on-primary-fixed-variant": "#3f007c",
+                        "secondary-fixed": "#80deff",
+                        "on-secondary-container": "#eef9ff",
+                        "inverse-primary": "#7e29df",
+                        "surface-bright": "#2c2c2c",
+                        "on-error-container": "#ffb2b9",
+                        "on-tertiary": "#49000f",
+                        "secondary-fixed-dim": "#37d4ff",
+                        "error-container": "#a70138",
+                        "tertiary-fixed-dim": "#ff7984"
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-border {
+            position: relative;
+            background: linear-gradient(#191919, #191919) padding-box,
+                        linear-gradient(135deg, #c59aff, #00cffc) border-box;
+            border: 1px solid transparent;
+        }
+        .glow-pulse {
+            box-shadow: 0 0 20px rgba(0, 207, 252, 0.15);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-container-lowest text-on-surface font-body selection:bg-primary selection:text-on-primary-fixed overflow-hidden">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-black/60 backdrop-blur-xl flex justify-between items-center px-6 h-16 w-full shadow-[0_0_20px_rgba(124,77,255,0.1)]">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#7C4DFF] hover:opacity-80 transition-opacity cursor-pointer">menu</span>
+<h1 class="font-['Space_Grotesk'] font-bold tracking-tight text-2xl font-black bg-gradient-to-br from-[#7C4DFF] to-[#00CFFC] bg-clip-text text-transparent">ZappNews</h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#ABABAB] hover:opacity-80 transition-opacity cursor-pointer">account_circle</span>
+</div>
+</header>
+<main class="relative min-h-screen w-full flex items-center justify-center p-6 pt-20 pb-32">
+<!-- Ambient Background Glows -->
+<div class="absolute top-1/4 -left-20 w-96 h-96 bg-primary/10 rounded-full blur-[120px] pointer-events-none"></div>
+<div class="absolute bottom-1/4 -right-20 w-96 h-96 bg-secondary/10 rounded-full blur-[120px] pointer-events-none"></div>
+<!-- Featured News Card Container -->
+<div class="relative w-full max-w-md group">
+<!-- Gesture Indicator: Swipe Right -->
+<div class="absolute -left-16 top-1/2 -translate-y-1/2 flex flex-col items-center gap-2 opacity-40 group-hover:opacity-100 transition-opacity duration-500 hidden md:flex">
+<div class="w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary animate-pulse">chevron_right</span>
+</div>
+<span class="text-[10px] uppercase tracking-[0.2em] font-headline text-on-surface-variant">Save</span>
+</div>
+<!-- The Card -->
+<div class="glass-border backdrop-blur-xl rounded-lg overflow-hidden bg-surface-container/60 flex flex-col glow-pulse transition-transform duration-500 hover:scale-[1.02]">
+<!-- Card Hero Image -->
+<div class="relative h-64 w-full overflow-hidden">
+<img class="w-full h-full object-cover grayscale-[30%] brightness-75 hover:grayscale-0 hover:brightness-100 transition-all duration-700" data-alt="Futuristic neural network visualization with glowing violet and cyan fiber optic lines in a dark digital void" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiAYgkwGv2k1UBJL1no0z6wME0NOy7vLEDN5u6jd6WkuYbYBRBiz3r36bDzBi9r9DNlwJFLWgNjKXyVm1Cr4J31ERQEelMbPcMada_1kWKJFpJIyH1Yw3u5oaO_YjsiwauP5oV0LmEmXLB9K9J_RLY0DFxAbcD-b2qEMP6VmKKrcHPEIrT_DZ6uznA2DuZhCxM-MBdsxWzSmRDtImQAX9vSJXjFkUrsio9PXM768m_1jk5A31YFN_ZAjEGSJJ1Z1VcljNH6QbWi9vT"/>
+<!-- Top Actions Overlay -->
+<div class="absolute top-0 w-full p-6 flex justify-between items-start bg-gradient-to-b from-black/80 to-transparent">
+<div class="bg-black/40 backdrop-blur-md px-3 py-1 rounded-full border border-outline-variant/20 flex items-center gap-2">
+<div class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></div>
+<span class="text-[10px] font-headline font-bold uppercase tracking-widest text-on-surface">AI Breakthrough</span>
+</div>
+<button class="w-10 h-10 rounded-full bg-black/40 backdrop-blur-md border border-outline-variant/20 flex items-center justify-center text-on-surface hover:text-primary transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">bookmark</span>
+</button>
+</div>
+</div>
+<!-- Card Content -->
+<div class="p-8 space-y-6">
+<!-- Source & Meta -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2 text-on-surface-variant font-medium text-xs">
+<span class="text-secondary font-bold tracking-tight">TechCrunch</span>
+<span class="opacity-30">•</span>
+<span>2h ago</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant text-[11px] font-headline tracking-wider uppercase">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span>3 min read</span>
+</div>
+</div>
+<!-- Title & Summary -->
+<div class="space-y-3">
+<h2 class="font-headline text-2xl lg:text-3xl font-bold leading-[1.1] tracking-tight text-on-surface line-clamp-2">
+                            The Silicon Frontier: LLMs Reach New Milestones in Reasoning
+                        </h2>
+<p class="font-body text-on-surface-variant leading-relaxed line-clamp-3">
+                            Recent breakthroughs in recursive self-improvement have led to a 40% increase in logical reasoning benchmarks across the top five open-source models.
+                        </p>
+</div>
+<!-- CTA Action -->
+<div class="pt-4 flex items-center justify-between gap-4">
+<button class="flex-1 h-14 rounded-full bg-gradient-to-br from-primary to-secondary p-[1px] group/btn active:scale-95 duration-200">
+<div class="w-full h-full rounded-full bg-surface-container-lowest flex items-center justify-center gap-2 group-hover/btn:bg-transparent transition-colors">
+<span class="text-on-surface font-headline font-bold tracking-wide group-hover/btn:text-black">Try it out</span>
+<span class="material-symbols-outlined text-primary group-hover/btn:text-black text-sm">arrow_forward_ios</span>
+</div>
+</button>
+<button class="w-14 h-14 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface hover:bg-surface-bright transition-colors">
+<span class="material-symbols-outlined">share</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Swipe visual cue (Subtle shadow spread) -->
+<div class="absolute -z-10 inset-0 bg-primary/5 blur-3xl rounded-lg group-hover:bg-secondary/10 transition-colors duration-500"></div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-8 pb-8 pt-4 bg-[#0E0E0E]/60 backdrop-blur-2xl rounded-t-[2rem] z-50 shadow-[0_-10px_40px_rgba(0,0,0,0.5)]">
+<div class="flex items-center justify-center bg-gradient-to-br from-[#7C4DFF] to-[#00CFFC] text-black rounded-full p-3 shadow-[0_0_15px_rgba(0,207,252,0.4)] active:scale-90 duration-200 cursor-pointer">
+<span class="material-symbols-outlined">auto_awesome</span>
+</div>
+<div class="flex items-center justify-center text-[#ABABAB] p-3 hover:text-[#00CFFC] transition-colors active:scale-90 duration-200 cursor-pointer">
+<span class="material-symbols-outlined">explore</span>
+</div>
+<div class="flex items-center justify-center text-[#ABABAB] p-3 hover:text-[#00CFFC] transition-colors active:scale-90 duration-200 cursor-pointer">
+<span class="material-symbols-outlined">bookmark</span>
+</div>
+<div class="flex items-center justify-center text-[#ABABAB] p-3 hover:text-[#00CFFC] transition-colors active:scale-90 duration-200 cursor-pointer">
+<span class="material-symbols-outlined">settings</span>
+</div>
+</nav>
+</body></html>

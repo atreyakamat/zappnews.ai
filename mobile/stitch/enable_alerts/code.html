@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ZappNews - Stay Ahead</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&amp;family=Inter:wght@300..700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-error": "#490013",
+                        "surface-dim": "#0e0e0e",
+                        "outline": "#757575",
+                        "on-secondary-fixed-variant": "#00586d",
+                        "tertiary-fixed-dim": "#ff7984",
+                        "on-secondary-container": "#eef9ff",
+                        "primary-dim": "#9547f7",
+                        "on-primary-container": "#330066",
+                        "on-tertiary-fixed-variant": "#79001f",
+                        "error-dim": "#d73357",
+                        "surface-tint": "#c59aff",
+                        "on-secondary": "#004050",
+                        "on-background": "#ffffff",
+                        "primary-fixed": "#ba88ff",
+                        "secondary-dim": "#00c0ea",
+                        "outline-variant": "#484848",
+                        "on-tertiary-container": "#000000",
+                        "primary-fixed-dim": "#b075ff",
+                        "on-primary-fixed": "#000000",
+                        "secondary-fixed-dim": "#37d4ff",
+                        "secondary-container": "#00677f",
+                        "tertiary-container": "#fc2a53",
+                        "background": "#0e0e0e",
+                        "surface-container-highest": "#262626",
+                        "on-primary-fixed-variant": "#3f007c",
+                        "inverse-on-surface": "#555555",
+                        "surface-container": "#191919",
+                        "primary": "#c59aff",
+                        "surface-container-lowest": "#000000",
+                        "tertiary-dim": "#e51245",
+                        "error-container": "#a70138",
+                        "on-surface": "#ffffff",
+                        "surface-container-high": "#1f1f1f",
+                        "surface": "#0e0e0e",
+                        "secondary": "#00cffc",
+                        "surface-container-low": "#131313",
+                        "primary-container": "#ba88ff",
+                        "tertiary-fixed": "#ff9197",
+                        "on-tertiary-fixed": "#39000a",
+                        "on-error-container": "#ffb2b9",
+                        "tertiary": "#ff6f7c",
+                        "inverse-primary": "#7e29df",
+                        "on-secondary-fixed": "#003a48",
+                        "error": "#ff6e84",
+                        "inverse-surface": "#f9f9f9",
+                        "secondary-fixed": "#80deff",
+                        "on-tertiary": "#49000f",
+                        "surface-bright": "#2c2c2c",
+                        "surface-variant": "#262626",
+                        "on-surface-variant": "#ababab",
+                        "on-primary": "#420082"
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #000000; }
+        .font-space-grotesk { font-family: 'Space Grotesk', sans-serif; }
+        .glass-card {
+            background: rgba(38, 38, 38, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(72, 72, 72, 0.2);
+        }
+        .neon-glow-primary {
+            box-shadow: 0 0 25px rgba(197, 154, 255, 0.3);
+        }
+        .ai-pulse-glow {
+            box-shadow: 0 0 15px rgba(0, 207, 252, 0.2);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-container-lowest text-on-surface overflow-hidden">
+<!-- Top Navigation Anchor -->
+<header class="fixed top-0 w-full z-50 bg-black/60 backdrop-blur-xl flex items-center justify-between px-6 h-16 w-full no-border tonal-shift-bg shadow-[0_0_20px_rgba(124,77,255,0.1)]">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-purple-400 scale-95 active:duration-100 hover:opacity-80 transition-opacity" data-icon="arrow_back">arrow_back</button>
+</div>
+<div class="text-2xl font-black bg-clip-text text-transparent bg-gradient-to-r from-[#7C4DFF] to-[#00cffc] font-space-grotesk tracking-tight">
+            ZappNews
+        </div>
+<div class="w-10"></div> <!-- Spacer for balance -->
+</header>
+<main class="relative min-h-screen flex flex-col items-center justify-center px-6 pt-20 pb-12 overflow-y-auto">
+<!-- Progress Indicator -->
+<div class="w-full max-w-xs mb-12 space-y-3">
+<div class="flex justify-between items-end mb-1">
+<span class="font-label text-[10px] uppercase tracking-widest text-secondary font-bold">Step 4 of 5</span>
+<span class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Notification Setup</span>
+</div>
+<div class="h-1 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full w-4/5 bg-gradient-to-r from-primary to-secondary rounded-full"></div>
+</div>
+</div>
+<!-- Hero Typography -->
+<div class="text-center mb-10 max-w-lg">
+<h1 class="font-headline font-bold text-4xl md:text-5xl tracking-tight text-on-surface mb-4">
+                Stay ahead of the curve.
+            </h1>
+<p class="font-body text-on-surface-variant text-lg leading-relaxed">
+                Get real-time alerts on breaking AI news and product launches.
+            </p>
+</div>
+<!-- Central Glassmorphic Preview Card -->
+<div class="relative w-full max-w-md group">
+<!-- Ambient Glow -->
+<div class="absolute -inset-4 bg-primary-dim/10 blur-[60px] rounded-full opacity-50"></div>
+<div class="glass-card rounded-lg p-6 relative overflow-hidden border border-outline-variant/20 shadow-2xl">
+<!-- AI Badge -->
+<div class="flex items-center gap-2 mb-6">
+<div class="h-8 w-8 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-on-primary-fixed">
+<span class="material-symbols-outlined text-sm" data-icon="auto_awesome" data-weight="fill">auto_awesome</span>
+</div>
+<span class="font-label text-[10px] uppercase tracking-[0.2em] text-secondary font-bold">AI Intelligence Alert</span>
+</div>
+<div class="flex gap-4">
+<div class="flex-1 space-y-3">
+<div class="flex justify-between items-start">
+<h3 class="font-headline text-xl font-bold text-on-surface">GPT-5 Deployment Phase Initiated</h3>
+<span class="font-label text-[10px] text-on-surface-variant">NOW</span>
+</div>
+<p class="font-body text-sm text-on-surface-variant leading-relaxed">
+                            Sources confirm early access clusters are live. Significant improvements in multi-modal reasoning detected.
+                        </p>
+</div>
+<div class="w-20 h-20 rounded-md overflow-hidden bg-surface-container flex-shrink-0">
+<img alt="AI Visualization" class="w-full h-full object-cover grayscale brightness-75 group-hover:grayscale-0 transition-all duration-700" data-alt="Futuristic digital neural network visualization with glowing violet and cyan connections on a dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyipuZc64IwTggJHYu50JZj51OpIqyCwZidQ1n68Vx5yhVVddbvfLruvhXeOTXNbJt5t9tYraE5xGg5uPZe5QdO_Y3Y_F_-rJaOnPybxhMHtVGRo_zAnmYvtLd7yF-h85m2ciHd-cR7MNfBrZodVYG82QXYdym4je9_VigmkSRXS08D3-FfAFNHzSORJiZVrkO3snsEdeH20eyiKDwDGds3SiB1ZGEuy6tnzwsKrqTtzveMTV_E9TNKM1uFNlnvFqDwspVcUbV5JCs"/>
+</div>
+</div>
+<div class="mt-6 flex items-center gap-3">
+<div class="px-3 py-1 rounded-full border border-secondary/30 bg-secondary/5 flex items-center gap-1.5 ai-pulse-glow">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+<span class="text-[10px] font-bold text-secondary uppercase tracking-wider">Live Analysis</span>
+</div>
+<div class="h-px flex-1 bg-outline-variant/20"></div>
+</div>
+</div>
+<!-- Floating Decoration -->
+<div class="absolute -bottom-4 -right-4 h-16 w-16 bg-secondary/20 blur-2xl rounded-full"></div>
+</div>
+<!-- Action Buttons -->
+<div class="mt-16 w-full max-w-sm flex flex-col gap-4">
+<button class="w-full py-4 bg-gradient-to-r from-primary to-secondary text-on-primary-fixed font-headline font-bold text-lg rounded-md neon-glow-primary scale-100 active:scale-95 transition-all duration-200">
+                Enable Notifications
+            </button>
+<button class="w-full py-3 text-on-surface-variant font-body font-medium text-sm hover:text-on-surface transition-colors duration-200">
+                Maybe Later
+            </button>
+</div>
+</main>
+<!-- Suppressed Navigation Shell for Focused Task (Requirement: suppress on transactional/onboarding) -->
+<!-- The BottomNavBar is excluded per the "Shell Visibility & Relevance" rule for focused journey screens. -->
+</body></html>

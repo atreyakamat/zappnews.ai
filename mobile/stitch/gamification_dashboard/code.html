@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ZappNews - Neural Pulse Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "error-container": "#a70138",
+                        "tertiary-fixed": "#ff909e",
+                        "error-dim": "#d73357",
+                        "secondary-container": "#00677f",
+                        "outline-variant": "#484848",
+                        "surface-container": "#191919",
+                        "surface-container-high": "#1f1f1f",
+                        "on-error": "#490013",
+                        "secondary-fixed": "#80deff",
+                        "on-error-container": "#ffb2b9",
+                        "surface-dim": "#0e0e0e",
+                        "surface-tint": "#b6a0ff",
+                        "primary-fixed-dim": "#9c7eff",
+                        "tertiary": "#ff6e84",
+                        "primary": "#b6a0ff",
+                        "on-tertiary-container": "#000000",
+                        "inverse-surface": "#f9f9f9",
+                        "surface-bright": "#2c2c2c",
+                        "on-tertiary-fixed-variant": "#780026",
+                        "secondary-dim": "#00c0ea",
+                        "on-secondary": "#004050",
+                        "on-primary-container": "#280072",
+                        "on-primary-fixed": "#000000",
+                        "tertiary-container": "#fb2a60",
+                        "on-secondary-fixed": "#003a48",
+                        "surface-container-low": "#131313",
+                        "background": "#0e0e0e",
+                        "primary-dim": "#7e51ff",
+                        "inverse-on-surface": "#555555",
+                        "inverse-primary": "#6834eb",
+                        "primary-container": "#a98fff",
+                        "surface-container-lowest": "#000000",
+                        "primary-fixed": "#a98fff",
+                        "surface": "#0e0e0e",
+                        "surface-container-highest": "#262626",
+                        "on-secondary-fixed-variant": "#00586d",
+                        "on-surface-variant": "#ababab",
+                        "tertiary-fixed-dim": "#ff788c",
+                        "secondary": "#00cffc",
+                        "surface-variant": "#262626",
+                        "secondary-fixed-dim": "#37d4ff",
+                        "on-primary": "#340090",
+                        "on-primary-fixed-variant": "#32008a",
+                        "on-secondary-container": "#eef9ff",
+                        "outline": "#757575",
+                        "on-tertiary-fixed": "#39000e",
+                        "on-surface": "#ffffff",
+                        "on-tertiary": "#480013",
+                        "tertiary-dim": "#e51152",
+                        "on-background": "#ffffff",
+                        "error": "#ff6e84"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { background-color: #0e0e0e; color: #ffffff; }
+        .glass-card {
+            background: rgba(38, 38, 38, 0.4);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+        .neural-glow-primary {
+            box-shadow: 0 0 40px -10px rgba(182, 160, 255, 0.2);
+        }
+        .neural-glow-secondary {
+            box-shadow: 0 0 40px -10px rgba(0, 207, 252, 0.2);
+        }
+        .progress-ring-circle {
+            transition: stroke-dashoffset 0.35s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+        .ghost-border {
+            border: 1px solid rgba(117, 117, 117, 0.15);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body selection:bg-primary/30">
+<!-- TopAppBar Shell -->
+<header class="fixed top-0 w-full z-50 bg-transparent backdrop-blur-xl bg-gradient-to-b from-black/20 to-transparent shadow-[0_0_20px_rgba(182,160,255,0.08)]">
+<div class="flex justify-between items-center px-6 h-16 w-full max-w-screen-2xl mx-auto">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container overflow-hidden border border-white/10 active:scale-95 duration-200 transition-opacity hover:opacity-80">
+<img class="w-full h-full object-cover" data-alt="portrait of a confident young man with stylish haircut in a neon-lit cyberpunk city environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGregUFL0xus0xm8o9zJ4dDneq6RfFZNL2iSLGswjZOR4-Wb6bwOR2eoAWwIKm1wgaYMPqiPnJJWz20-wKRCbOYWzWYZCkgUGfuZZMF91BcaWXeYoKQOpAbrBFIPxcmcR5eZYajiXtYeHCjrYmDlDwWpwG1FuYMjR2GRscuJ1pGkK35w6y1GCYCmQ5rOgfSN5AA1z0P7fen0Uqph8_bHRxulUdkx_tKf84nKOdcVEmqRBzyL036_yJr4v9tufmWVJGjEHdWwzsYxUr"/>
+</div>
+<span class="text-xl font-black tracking-tighter text-white bg-clip-text bg-gradient-to-r from-[#b6a0ff] to-[#00cffc] font-manrope uppercase">NEURAL PULSE</span>
+</div>
+<div class="flex items-center text-[#b6a0ff] hover:opacity-80 transition-opacity active:scale-95 duration-200 cursor-pointer">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-32 px-6 max-w-screen-xl mx-auto">
+<!-- User Profile Header -->
+<section class="mb-12 flex flex-col items-center md:items-start">
+<div class="flex flex-col md:flex-row items-center gap-6">
+<div class="relative group">
+<div class="absolute inset-0 bg-gradient-to-tr from-primary to-secondary rounded-full blur-xl opacity-20 group-hover:opacity-40 transition-opacity"></div>
+<div class="relative w-24 h-24 md:w-32 md:h-32 rounded-full border-2 border-primary/30 p-1">
+<img class="w-full h-full object-cover rounded-full" data-alt="close-up portrait of a man with glowing purple and blue studio lighting on his face" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5uexSYZa7v89HuRqv9LOfmqGlNgmOFAFgs2i8gikqzH5tHVhKdnoL9h30FjYWM7td15urkcKLHA53JQbpAJEVOPOosHIUHLOIn1JJ66uvlGG1qSrDI6ONUsX_iG0e4IHo5J-GRzQirgjOEYj17vlWpVuGqRZROlUoxsCCJUSqcruPBOUtR0RA17QRPo7X9JfzT_IhbdQls0fSwsPvUkxjkcJksVA6i_9141pOPEFX06RCARftFZxKUSOUsUd7JkzOlwpHw6v9YGSu"/>
+</div>
+</div>
+<div class="text-center md:text-left space-y-1">
+<div class="flex items-center justify-center md:justify-start gap-2">
+<h1 class="text-3xl font-headline font-bold tracking-tight text-on-surface">Alex Rivera</h1>
+<span class="px-3 py-1 bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-black text-[10px] font-black rounded-full uppercase tracking-widest shadow-[0_0_15px_rgba(255,215,0,0.3)]">GOLD</span>
+</div>
+<p class="text-on-surface-variant font-medium">Daily Intelligence Analyst</p>
+<div class="flex gap-4 mt-4 justify-center md:justify-start">
+<div class="text-center">
+<span class="block text-xl font-bold font-headline text-primary">Lvl 42</span>
+<span class="text-[10px] uppercase tracking-widest text-on-surface-variant">RANK</span>
+</div>
+<div class="w-px h-8 bg-outline-variant/30"></div>
+<div class="text-center">
+<span class="block text-xl font-bold font-headline text-secondary">Top 2%</span>
+<span class="text-[10px] uppercase tracking-widest text-on-surface-variant">GLOBAL</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Hero: Progress Ring -->
+<section class="mb-16">
+<div class="glass-card rounded-lg p-10 flex flex-col items-center justify-center relative overflow-hidden neural-glow-primary ghost-border">
+<div class="absolute -top-24 -left-24 w-64 h-64 bg-primary/10 rounded-full blur-[100px]"></div>
+<div class="absolute -bottom-24 -right-24 w-64 h-64 bg-secondary/10 rounded-full blur-[100px]"></div>
+<div class="relative w-64 h-64 md:w-80 md:h-80">
+<svg class="w-full h-full" viewbox="0 0 100 100">
+<circle class="text-surface-container stroke-current" cx="50" cy="50" fill="transparent" r="42" stroke-width="6"></circle>
+<circle class="text-primary stroke-current progress-ring-circle" cx="50" cy="50" fill="transparent" r="42" stroke-linecap="round" stroke-width="6" style="stroke-dasharray: 263.89; stroke-dashoffset: 79.16; filter: drop-shadow(0 0 8px #b6a0ff);"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+<span class="text-on-surface-variant text-sm uppercase tracking-[0.2em] font-medium">Total Points</span>
+<span class="text-5xl md:text-6xl font-headline font-extrabold text-on-surface tracking-tighter mt-1">12,450</span>
+<span class="text-primary font-bold text-sm mt-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="trending_up">trending_up</span>
+                            +450 TODAY
+                        </span>
+</div>
+</div>
+</div>
+</section>
+<!-- Quick Stats Bento -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+<div class="glass-card rounded-lg p-6 ghost-border hover:bg-surface-container-high transition-colors group">
+<div class="flex items-center justify-between mb-4">
+<div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Articles Read</span>
+</div>
+<div class="text-3xl font-headline font-bold text-on-surface">1,248</div>
+<div class="mt-2 text-xs text-on-surface-variant">Focusing on Tech &amp; AI</div>
+</div>
+<div class="glass-card rounded-lg p-6 ghost-border hover:bg-surface-container-high transition-colors group">
+<div class="flex items-center justify-between mb-4">
+<div class="w-12 h-12 rounded-xl bg-error/10 flex items-center justify-center text-error group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" data-icon="local_fire_department" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Streak Count</span>
+</div>
+<div class="text-3xl font-headline font-bold text-on-surface">14 Days</div>
+<div class="mt-2 text-xs text-on-surface-variant">Don't break the chain!</div>
+</div>
+<div class="glass-card rounded-lg p-6 ghost-border hover:bg-surface-container-high transition-colors group">
+<div class="flex items-center justify-between mb-4">
+<div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" data-icon="database">database</span>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Points Earned</span>
+</div>
+<div class="text-3xl font-headline font-bold text-on-surface">2,840</div>
+<div class="mt-2 text-xs text-on-surface-variant">Last 30 days performance</div>
+</div>
+</section>
+<!-- Weekly Activity & Achievements Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-16">
+<!-- Weekly Activity Chart -->
+<section>
+<h2 class="text-xl font-headline font-bold mb-6 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary shadow-[0_0_8px_#00cffc]"></span>
+                    Weekly Intelligence
+                </h2>
+<div class="glass-card rounded-lg p-8 ghost-border min-h-[300px] flex flex-col justify-between">
+<div class="flex items-end justify-between h-48 gap-3">
+<div class="flex flex-col items-center gap-2 w-full">
+<div class="w-full bg-surface-container-high rounded-t-md relative group">
+<div class="absolute bottom-0 w-full h-[40%] bg-gradient-to-t from-secondary/40 to-secondary rounded-t-md shadow-[0_0_15px_rgba(0,207,252,0.3)]"></div>
+</div>
+<span class="text-[10px] text-on-surface-variant font-bold">MON</span>
+</div>
+<div class="flex flex-col items-center gap-2 w-full">
+<div class="w-full bg-surface-container-high rounded-t-md relative group">
+<div class="absolute bottom-0 w-full h-[65%] bg-gradient-to-t from-secondary/40 to-secondary rounded-t-md shadow-[0_0_15px_rgba(0,207,252,0.3)]"></div>
+</div>
+<span class="text-[10px] text-on-surface-variant font-bold">TUE</span>
+</div>
+<div class="flex flex-col items-center gap-2 w-full">
+<div class="w-full bg-surface-container-high rounded-t-md relative group">
+<div class="absolute bottom-0 w-full h-[90%] bg-gradient-to-t from-primary/40 to-primary rounded-t-md shadow-[0_0_15px_rgba(182,160,255,0.3)]"></div>
+</div>
+<span class="text-[10px] text-on-surface-variant font-bold">WED</span>
+</div>
+<div class="flex flex-col items-center gap-2 w-full">
+<div class="w-full bg-surface-container-high rounded-t-md relative group">
+<div class="absolute bottom-0 w-full h-[55%] bg-gradient-to-t from-secondary/40 to-secondary rounded-t-md shadow-[0_0_15px_rgba(0,207,252,0.3)]"></div>
+</div>
+<span class="text-[10px] text-on-surface-variant font-bold">THU</span>
+</div>
+<div class="flex flex-col items-center gap-2 w-full">
+<div class="w-full bg-surface-container-high rounded-t-md relative group">
+<div class="absolute bottom-0 w-full h-[75%] bg-gradient-to-t from-secondary/40 to-secondary rounded-t-md shadow-[0_0_15px_rgba(0,207,252,0.3)]"></div>
+</div>
+<span class="text-[10px] text-on-surface-variant font-bold">FRI</span>
+</div>
+<div class="flex flex-col items-center gap-2 w-full">
+<div class="w-full bg-surface-container-high rounded-t-md relative group">
+<div class="absolute bottom-0 w-full h-[30%] bg-gradient-to-t from-secondary/40 to-secondary rounded-t-md shadow-[0_0_15px_rgba(0,207,252,0.3)]"></div>
+</div>
+<span class="text-[10px] text-on-surface-variant font-bold">SAT</span>
+</div>
+<div class="flex flex-col items-center gap-2 w-full">
+<div class="w-full bg-surface-container-high rounded-t-md relative group">
+<div class="absolute bottom-0 w-full h-[20%] bg-gradient-to-t from-secondary/40 to-secondary rounded-t-md shadow-[0_0_15px_rgba(0,207,252,0.3)]"></div>
+</div>
+<span class="text-[10px] text-on-surface-variant font-bold">SUN</span>
+</div>
+</div>
+<div class="mt-6 flex justify-between items-center text-xs">
+<span class="text-on-surface-variant">Peak performance: <span class="text-primary font-bold">Wednesday</span></span>
+<div class="flex gap-4">
+<div class="flex items-center gap-1">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<span class="text-[10px] font-bold uppercase">Goal Met</span>
+</div>
+<div class="flex items-center gap-1">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<span class="text-[10px] font-bold uppercase">Active</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Achievements Section -->
+<section>
+<h2 class="text-xl font-headline font-bold mb-6 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_#b6a0ff]"></span>
+                    Achievements
+                </h2>
+<div class="grid grid-cols-2 gap-4">
+<div class="glass-card rounded-lg p-6 ghost-border flex flex-col items-center text-center neural-glow-primary">
+<div class="w-14 h-14 rounded-full bg-primary/20 flex items-center justify-center text-primary mb-3">
+<span class="material-symbols-outlined text-3xl" data-icon="wb_sunny" style="font-variation-settings: 'FILL' 1;">wb_sunny</span>
+</div>
+<h3 class="text-sm font-bold text-on-surface">Early Bird</h3>
+<p class="text-[10px] text-on-surface-variant mt-1">Read by 7AM for 7 days</p>
+</div>
+<div class="glass-card rounded-lg p-6 ghost-border flex flex-col items-center text-center opacity-40 grayscale">
+<div class="w-14 h-14 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant mb-3">
+<span class="material-symbols-outlined text-3xl" data-icon="dark_mode">dark_mode</span>
+</div>
+<h3 class="text-sm font-bold text-on-surface">Night Owl</h3>
+<p class="text-[10px] text-on-surface-variant mt-1">Midnight sessions</p>
+</div>
+<div class="glass-card rounded-lg p-6 ghost-border flex flex-col items-center text-center neural-glow-secondary">
+<div class="w-14 h-14 rounded-full bg-secondary/20 flex items-center justify-center text-secondary mb-3">
+<span class="material-symbols-outlined text-3xl" data-icon="bolt" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<h3 class="text-sm font-bold text-on-surface">Speed Demon</h3>
+<p class="text-[10px] text-on-surface-variant mt-1">Finish 5 long reads</p>
+</div>
+<div class="glass-card rounded-lg p-6 ghost-border flex flex-col items-center text-center neural-glow-primary">
+<div class="w-14 h-14 rounded-full bg-primary/20 flex items-center justify-center text-primary mb-3">
+<span class="material-symbols-outlined text-3xl" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<h3 class="text-sm font-bold text-on-surface">Fact Checker</h3>
+<p class="text-[10px] text-on-surface-variant mt-1">100 articles verified</p>
+</div>
+</div>
+</section>
+</div>
+<!-- Points Breakdown -->
+<section class="mb-12">
+<div class="flex justify-between items-center mb-6">
+<h2 class="text-xl font-headline font-bold flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-on-surface shadow-[0_0_8px_white]"></span>
+                    Recent Intelligence Earnings
+                </h2>
+<button class="text-[10px] font-black uppercase tracking-widest text-primary hover:text-secondary transition-colors">View All History</button>
+</div>
+<div class="space-y-4">
+<div class="glass-card rounded-lg p-5 ghost-border flex items-center justify-between group cursor-pointer hover:translate-x-1 transition-transform">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined" data-icon="article">article</span>
+</div>
+<div>
+<h4 class="text-sm font-bold text-on-surface">AI Ethics Deep Dive</h4>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest">Article Read • 2 min ago</p>
+</div>
+</div>
+<div class="text-right">
+<span class="block font-headline font-bold text-secondary">+150 Pts</span>
+<span class="text-[10px] text-on-surface-variant uppercase">Critical thinking bonus</span>
+</div>
+</div>
+<div class="glass-card rounded-lg p-5 ghost-border flex items-center justify-between group cursor-pointer hover:translate-x-1 transition-transform">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="military_tech">military_tech</span>
+</div>
+<div>
+<h4 class="text-sm font-bold text-on-surface">Weekly Milestone Achieved</h4>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest">System • 1 hour ago</p>
+</div>
+</div>
+<div class="text-right">
+<span class="block font-headline font-bold text-primary">+500 Pts</span>
+<span class="text-[10px] text-on-surface-variant uppercase">Progress Reward</span>
+</div>
+</div>
+<div class="glass-card rounded-lg p-5 ghost-border flex items-center justify-between group cursor-pointer hover:translate-x-1 transition-transform">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined" data-icon="share">share</span>
+</div>
+<div>
+<h4 class="text-sm font-bold text-on-surface">Shared: Neural Networks v2</h4>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest">Engagement • 4 hours ago</p>
+</div>
+</div>
+<div class="text-right">
+<span class="block font-headline font-bold text-secondary">+75 Pts</span>
+<span class="text-[10px] text-on-surface-variant uppercase">Viral coefficient</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar Shell -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 px-8 pb-safe bg-[#1a1a1a]/60 backdrop-blur-2xl rounded-t-[32px] border-t border-white/10 shadow-[0_-10px_40px_rgba(0,0,0,0.5)]">
+<a class="flex items-center justify-center text-gray-500 hover:text-white transition-colors active:scale-90 duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+</a>
+<a class="flex items-center justify-center text-gray-500 hover:text-white transition-colors active:scale-90 duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="insights">insights</span>
+</a>
+<a class="flex items-center justify-center text-gray-500 hover:text-white transition-colors active:scale-90 duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="military_tech">military_tech</span>
+</a>
+<a class="relative flex items-center justify-center text-[#b6a0ff] after:absolute after:-bottom-2 after:w-1 after:h-1 after:bg-[#b6a0ff] after:rounded-full after:shadow-[0_0_10px_#b6a0ff] active:scale-90 duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</a>
+</nav>
+</body></html>
