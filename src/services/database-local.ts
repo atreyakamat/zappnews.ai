@@ -293,6 +293,26 @@ class LocalDatabase {
     return row || null;
   }
 
+  // Get recent summaries for frontend display
+  getRecentSummaries(limit = 100): any[] {
+    const rows = this.db.prepare(`
+      SELECT 
+        s.id,
+        i.title,
+        s.summary,
+        i.url,
+        i.source,
+        s.tag,
+        s.cta,
+        s.created_at
+      FROM summaries s
+      JOIN items i ON s.item_id = i.id
+      ORDER BY s.created_at DESC
+      LIMIT ?
+    `).all(limit) as any[];
+    return rows;
+  }
+
   // Stats for dashboard
   async getStats(): Promise<{ items: number; summaries: number; saved: number; unsent: number }> {
     const items = (this.db.prepare('SELECT COUNT(*) as count FROM items').get() as any).count;

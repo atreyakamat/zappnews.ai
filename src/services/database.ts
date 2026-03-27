@@ -21,6 +21,18 @@ async function getDb() {
   return dbInstance;
 }
 
+// Export getDatabase for direct access
+export function getDatabase() {
+  if (!dbInstance) {
+    // Sync initialization for local db
+    if (config.DB_MODE === 'local') {
+      const { localDb } = require('./database-local.js');
+      dbInstance = localDb;
+    }
+  }
+  return dbInstance;
+}
+
 // Proxy object that forwards all calls to the actual database
 export const db = {
   async hashUrl(url: string): Promise<string> {
@@ -111,5 +123,10 @@ export const db = {
       return instance.getStats();
     }
     return { items: 0, summaries: 0, saved: 0, unsent: 0 };
+  },
+  
+  getRecentSummaries(limit = 100): any[] {
+    const instance = getDatabase();
+    return instance.getRecentSummaries ? instance.getRecentSummaries(limit) : [];
   }
 };

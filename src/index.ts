@@ -58,6 +58,19 @@ app.post('/api/test-fetch', async (req, res) => {
   }
 });
 
+// API endpoint to get items for frontend
+app.get('/api/items', async (req, res) => {
+  try {
+    const { getDatabase } = await import('./services/database.js');
+    const db = getDatabase();
+    const items = db.getRecentSummaries(100);
+    res.json({ items });
+  } catch (error) {
+    logger.error('API get items error:', error);
+    res.status(500).json({ items: [], error: 'Failed to get items' });
+  }
+});
+
 // Start server
 const PORT = parseInt(config.PORT, 10);
 
