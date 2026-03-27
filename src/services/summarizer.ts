@@ -4,21 +4,36 @@ import { config } from '../config/index.js';
 import { Item, SummaryResult, TagType } from '../types/index.js';
 import { logger } from './logger.js';
 
-const SYSTEM_PROMPT = `You are a concise AI news curator. Given a post or article title and content, output a JSON object with exactly these fields:
+const SYSTEM_PROMPT = `You are a concise AI news curator. You will receive multiple news items. For EACH item, output a JSON object with these fields:
 
-1. "summary": A 2-sentence summary for a developer audience. Be specific about what the tool/paper/project does. No hype or marketing speak.
-2. "tag": One of exactly: "tool", "paper", "project", "tutorial", "opinion"
-3. "cta": A one-line call-to-action like "Try it: [specific action]" or "Read: [what to learn]"
+1. "id": The item ID provided
+2. "summary": A 2-sentence summary for developers. Be specific, no hype.
+3. "tag": One of: "tool", "paper", "project", "tutorial", "opinion"
+4. "cta": A one-line call-to-action like "Try it: [action]" or "Read: [topic]"
 
-Respond ONLY with valid JSON, no markdown or explanation.
+Output a JSON array of objects. Example:
+[
+  {"id": "abc123", "summary": "New AI tool released...", "tag": "tool", "cta": "Try it: Install via npm"},
+  {"id": "def456", "summary": "Research paper shows...", "tag": "paper", "cta": "Read: Key findings on page 5"}
+]
 
-Example output:
-{"summary": "Anthropic released Claude 3.5 Sonnet with improved coding abilities and 200K context window. It outperforms GPT-4 on several benchmarks while being faster and cheaper.", "tag": "tool", "cta": "Try it: Test Claude 3.5 on a complex coding task at claude.ai"}`;
+Respond ONLY with valid JSON array, no markdown.`;
 
-// OpenRouter client
-async function summarizeWithOpenRouter(item: Item): Promise<SummaryResult | null> {
+// BATCH summarize ALL items in ONE request (saves API calls!)
+async function batchSummarizeWithOpenRouter(items: Item[]): Promise<Map<string, SummaryResult>> {
+  const results = new Map<string, SummaryResult>();
+  
+  if (items.length === 0) return results;
+  
   try {
-    const userContent = `Title: ${item.title}\n\nContent: ${item.raw_text?.slice(0, 1500) || 'No content available'}\n\nSource: ${item.source}`;
+    // Format all items for one batch request
+    const itemsList = items.map((item, i) => 
+      `[Item ${i + 1}] ID: ${item.id}\nTitle: ${item.title}\nContent: ${item.raw_text?.slice(0, 500) || 'No content'}\nSource: ${item.source}`
+    ).join('\n\n---\n\n');
+    
+    const userContent = `Summarize these ${items.length} AI news items:\n\n${itemsList}`;
+    
+    logger.info(`🔄 Making ONE OpenRouter request for ${items.length} items...`);
     
     const response = await axios.post(
       'https://openrouter.ai/api/v1/chat/completions',
@@ -29,7 +44,7 @@ async function summarizeWithOpenRouter(item: Item): Promise<SummaryResult | null
           { role: 'user', content: userContent }
         ],
         temperature: 0.3,
-        max_tokens: 300
+        max_tokens: 4000
       },
       {
         headers: {
@@ -37,106 +52,113 @@ async function summarizeWithOpenRouter(item: Item): Promise<SummaryResult | null
           'HTTP-Referer': 'https://zappnews.ai',
           'X-Title': 'ZappNews.ai',
           'Content-Type': 'application/json'
-        }
+        },
+        timeout: 120000 // 2 minute timeout
       }
     );
     
-    const content = response.data.choices[0]?.message?.content;
+    logger.debug('OpenRouter response received');
+    
+    const content = response.data?.choices?.[0]?.message?.content;
     
     if (!content) {
-      logger.error('No content in OpenRouter response');
-      return null;
+      logger.error('No content in OpenRouter response. Full response:', JSON.stringify(response.data, null, 2));
+      return results;
     }
     
-    // Parse JSON from response (handle potential markdown code blocks)
+    logger.debug(`Got content (${content.length} chars)`);
+    
+    // Parse JSON from response
     let jsonStr = content;
     if (content.includes('```')) {
       jsonStr = content.replace(/```json?\n?/g, '').replace(/```/g, '').trim();
     }
     
     const parsed = JSON.parse(jsonStr);
+    const summaries = Array.isArray(parsed) ? parsed : [parsed];
     
     const validTags: TagType[] = ['tool', 'paper', 'project', 'tutorial', 'opinion'];
-    const tag = validTags.includes(parsed.tag) ? parsed.tag : 'opinion';
     
-    return {
-      summary: parsed.summary || 'No summary available',
-      tag,
-      cta: parsed.cta || 'Check it out'
-    };
-  } catch (error) {
-    logger.error(`Error with OpenRouter for item ${item.id}:`, error);
-    return null;
+    for (const summary of summaries) {
+      if (summary.id) {
+        results.set(summary.id, {
+          summary: summary.summary || 'No summary available',
+          tag: validTags.includes(summary.tag) ? summary.tag : 'opinion',
+          cta: summary.cta || 'Check it out'
+        });
+      }
+    }
+    
+    logger.info(`✅ Got ${results.size} summaries from ONE API request`);
+    
+  } catch (error: any) {
+    logger.error('Error with batch OpenRouter request:', error.response?.data || error.message);
   }
+  
+  return results;
 }
 
-// OpenAI client
-async function summarizeWithOpenAI(item: Item): Promise<SummaryResult | null> {
+// OpenAI batch summarizer (fallback)
+async function batchSummarizeWithOpenAI(items: Item[]): Promise<Map<string, SummaryResult>> {
+  const results = new Map<string, SummaryResult>();
+  
+  if (items.length === 0) return results;
+  
   try {
     const openai = new OpenAI({ apiKey: config.OPENAI_API_KEY });
     
-    const userContent = `Title: ${item.title}\n\nContent: ${item.raw_text?.slice(0, 2000) || 'No content available'}\n\nSource: ${item.source}`;
+    const itemsList = items.map((item, i) => 
+      `[Item ${i + 1}] ID: ${item.id}\nTitle: ${item.title}\nContent: ${item.raw_text?.slice(0, 500) || 'No content'}\nSource: ${item.source}`
+    ).join('\n\n---\n\n');
     
     const response = await openai.chat.completions.create({
       model: 'gpt-4o-mini',
       messages: [
         { role: 'system', content: SYSTEM_PROMPT },
-        { role: 'user', content: userContent }
+        { role: 'user', content: `Summarize these ${items.length} AI news items:\n\n${itemsList}` }
       ],
       temperature: 0.3,
-      max_tokens: 300,
+      max_tokens: 2000,
       response_format: { type: 'json_object' }
     });
     
     const content = response.choices[0]?.message?.content;
-    
-    if (!content) {
-      logger.error('No content in OpenAI response');
-      return null;
-    }
+    if (!content) return results;
     
     const parsed = JSON.parse(content);
+    const summaries = Array.isArray(parsed) ? parsed : (parsed.items || [parsed]);
     
     const validTags: TagType[] = ['tool', 'paper', 'project', 'tutorial', 'opinion'];
-    const tag = validTags.includes(parsed.tag) ? parsed.tag : 'opinion';
     
-    return {
-      summary: parsed.summary || 'No summary available',
-      tag,
-      cta: parsed.cta || 'Check it out'
-    };
-  } catch (error) {
-    logger.error(`Error with OpenAI for item ${item.id}:`, error);
-    return null;
-  }
-}
-
-export async function summarizeItem(item: Item): Promise<SummaryResult | null> {
-  if (config.LLM_PROVIDER === 'openrouter') {
-    return summarizeWithOpenRouter(item);
-  } else {
-    return summarizeWithOpenAI(item);
-  }
-}
-
-export async function summarizeItems(items: Item[]): Promise<Map<string, SummaryResult>> {
-  const results = new Map<string, SummaryResult>();
-  
-  logger.info(`Summarizing ${items.length} items using ${config.LLM_PROVIDER}...`);
-  
-  // Process one at a time for free tier rate limits
-  for (const item of items) {
-    const result = await summarizeItem(item);
-    if (result) {
-      results.set(item.id, result);
-      logger.debug(`Summarized: ${item.title.slice(0, 50)}...`);
+    for (const summary of summaries) {
+      if (summary.id) {
+        results.set(summary.id, {
+          summary: summary.summary || 'No summary available',
+          tag: validTags.includes(summary.tag) ? summary.tag : 'opinion',
+          cta: summary.cta || 'Check it out'
+        });
+      }
     }
-    
-    // Delay between requests to respect rate limits
-    await new Promise(resolve => setTimeout(resolve, 2000));
+  } catch (error) {
+    logger.error('Error with OpenAI batch:', error);
   }
-  
-  logger.info(`Summarized ${results.size} of ${items.length} items`);
   
   return results;
+}
+
+// Single item summarizer (for backwards compatibility)
+export async function summarizeItem(item: Item): Promise<SummaryResult | null> {
+  const results = await summarizeItems([item]);
+  return results.get(item.id) || null;
+}
+
+// Main batch summarizer - ONE request for all items!
+export async function summarizeItems(items: Item[]): Promise<Map<string, SummaryResult>> {
+  logger.info(`📝 Batch summarizing ${items.length} items using ${config.LLM_PROVIDER}...`);
+  
+  if (config.LLM_PROVIDER === 'openrouter') {
+    return batchSummarizeWithOpenRouter(items);
+  } else {
+    return batchSummarizeWithOpenAI(items);
+  }
 }
