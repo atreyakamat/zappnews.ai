@@ -18,12 +18,12 @@ export async function GET() {
 
     // If backend is not available or no items endpoint, read from SQLite directly
     // This is a fallback for the frontend demo
-    const Database = require('better-sqlite3');
-    const path = require('path');
-    
-    const dbPath = path.join(process.cwd(), '..', 'data', 'zappnews.db');
-    
     try {
+      const Database = (await import('better-sqlite3')).default;
+      const path = await import('path');
+      
+      const dbPath = path.join(process.cwd(), '..', 'data', 'zappnews.db');
+      
       const db = new Database(dbPath, { readonly: true });
       
       const items = db.prepare(`
